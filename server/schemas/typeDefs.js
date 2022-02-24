@@ -11,7 +11,7 @@ const typeDefs = gql`
     _id: ID!
     characterName: String
     race: String
-    class: String
+    className: String
     hitPoints: Int
     strength: Int
     dexterity: Int
@@ -20,6 +20,7 @@ const typeDefs = gql`
     wisdom: Int
     charisma: Int
     notes: [Note]
+    madeBy: String
   }
 
   type Note {
@@ -42,10 +43,10 @@ const typeDefs = gql`
   type Mutation {
     addUser(username: String!, email: String!, password: String!): Auth
     login(email: String!, password: String!): Auth
-    addCharacter(characterName: String, race: String, class: String, hitPoints: Int, strength: Int, dexterity: Int, constitution: Int, intelligence: Int, wisdom: Int, charisma: Int): Character
-    deleteCharacter(charactersID: ID!): User
-    addNote(title: String, text: String): Note
-    deleteNote(noteId: ID!)
+    addCharacter(characterName: String, race: String, className: String, hitPoints: Int, strength: Int, dexterity: Int, constitution: Int, intelligence: Int, wisdom: Int, charisma: Int): Character
+    deleteCharacter(charactersID: ID!): Character
+    addNote(characterId: ID!, title: String, text: String, timestamp: String): Note
+    deleteNote(characterId: ID!, noteId: ID!): Note
   }
 
   type Auth {
