@@ -20,7 +20,7 @@ const resolvers = {
       return Note.find(params).sort({ createdAt: -1 });
     },
     note: async (parent, { noteId }) => {
-      return Note.findOne({ _id: characterId });
+      return Note.findOne({ _id: noteId });
     },
     me: async (parent, args, context) => {
       if (context.user) {
