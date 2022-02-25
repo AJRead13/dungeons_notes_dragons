@@ -9,8 +9,8 @@ import { QUERY_USER, GET_ME} from '../utils/queries'
 
 const Profile = () => {
   const { username: userParam} = useParams();
-  const { loading, data } = useQuery(userParam ? QUERY_USER : GET_ME, {
-    variables: { username: userParam },
+  const { loading, data } = useQuery(useParams ? QUERY_USER : GET_ME, {
+    variables: { username: useParams },
   });
   const user = data?.me || data?.user || {};
   if (Auth.loggedIn() && Auth.getProfile().data.username === userParam) {
