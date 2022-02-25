@@ -54,12 +54,12 @@ function d12HP() {
 }
 
 function meleeAttack() {
-    let attackMelee = Math.floor((Math.random() * 20) + 1 (`${Character.strength} + ${Character.proficiency}`))
+    let attackMelee = Math.floor((Math.random() * 20) + 1 (`${Character.strength + Character.proficiency}`))
     return attackMelee;
 }
 
 function rangedAttack() {
-    let attackRange = Math.floor((Math.random() * 20) + 1 (`${Character.dexterity} + ${Character.proficiency}`))
+    let attackRange = Math.floor((Math.random() * 20) + 1 (`${Character.dexterity + Character.proficiency}`))
     return attackRange;
 }
 
