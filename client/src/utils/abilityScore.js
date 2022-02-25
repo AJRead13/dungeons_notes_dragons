@@ -56,4 +56,6 @@ function attackRoll() {
     return attackMelee;
 }
 
+
+
 module.exports = { generateScore, getModifier, d6HP, d8HP, d10HP, d12HP, attackRoll };
