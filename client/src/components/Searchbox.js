@@ -1,6 +1,6 @@
 import React from 'react';
 
-const NotFound = () => {
+const Searchbox = () => {
   return (
     <>
 
@@ -8,4 +8,4 @@ const NotFound = () => {
   )
 }
 
-export default NotFound;
+export default Searchbox;

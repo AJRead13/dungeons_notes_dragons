@@ -1,27 +1,57 @@
 const { gql } = require('apollo-server-express');
 
 const typeDefs = gql`
-  type Tech {
+  type User {
     _id: ID!
-    name: String!
+    username: String
+    characters: [Character]
+  }
+  
+  type Character {
+    _id: ID!
+    characterName: String
+    race: String
+    className: String
+    hitPoints: Int
+    strength: Int
+    dexterity: Int
+    constitution: Int
+    intelligence: Int
+    wisdom: Int
+    charisma: Int
+    notes: [Note]
+    madeBy: String
   }
 
-  type Matchup {
+  type Note {
     _id: ID!
-    tech1: String!
-    tech2: String!
-    tech1_votes: Int
-    tech2_votes: Int
+    title: String
+    text: String
+    timestamp: String
   }
 
   type Query {
-    tech: [Tech]
-    matchups(_id: String): [Matchup]
+    users: [User]!
+    user(userId: ID!): User
+    characters(username: String): [Character]
+    character(characterId: ID!): Character
+    notes(characterName: String): [Note]
+    note(noteId: ID!): Note
+    me: User
   }
 
   type Mutation {
-    createMatchup(tech1: String!, tech2: String!): Matchup
-    createVote(_id: String!, techNum: Int!): Matchup
+    addUser(username: String!, email: String!, password: String!): Auth
+    login(email: String!, password: String!): Auth
+    addCharacter(characterName: String, race: String, className: String, hitPoints: Int, strength: Int, dexterity: Int, constitution: Int, intelligence: Int, wisdom: Int, charisma: Int): Character
+    deleteCharacter(charactersID: ID!): Character
+    addNote(characterId: ID!, title: String, text: String, timestamp: String): Note
+    deleteNote(characterId: ID!, noteId: ID!): Note
+  }
+
+  type Auth {
+    token: ID!
+    user: User
   }
 `;
 

@@ -1,27 +1,129 @@
-const { Tech, Matchup } = require('../models');
+const { User, Character, Note } = require('../models');
 
 const resolvers = {
   Query: {
-    tech: async () => {
-      return Tech.find({});
+    users: async () => {
+      return User.find().populate('characters');
     },
-    matchups: async (parent, { _id }) => {
-      const params = _id ? { _id } : {};
-      return Matchup.find(params);
+    user: async (parent, { username }) => {
+      return User.findOne({ username }).populate('characters');
+    },
+    characters: async (parent, { username }) => {
+      const params = username ? { username } : {};
+      return Character.find(params).populate('notes');
+    },
+    character: async (parent, { characterId }) => {
+      return Character.findOne({ _id: characterId }).populate('notes');
+    },
+    notes: async (parent, { characterName }) => {
+      const params = characterName ? { characterName } : {};
+      return Note.find(params).sort({ createdAt: -1 });
+    },
+    note: async (parent, { noteId }) => {
+      return Note.findOne({ _id: noteId });
+    },
+    me: async (parent, args, context) => {
+      if (context.user) {
+        return User.findOne({ _id: context.user._id }).populate('characters');
+      }
+      throw new AuthenticationError('You need to be logged in!');
     },
   },
   Mutation: {
-    createMatchup: async (parent, args) => {
-      const matchup = await Matchup.create(args);
-      return matchup;
+    addUser: async (parent, { username, email, password }) => {
+      const user = await User.create({ username, email, password });
+      const token = signToken(user);
+      return { token, user };
     },
-    createVote: async (parent, { _id, techNum }) => {
-      const vote = await Matchup.findOneAndUpdate(
-        { _id },
-        { $inc: { [`tech${techNum}_votes`]: 1 } },
-        { new: true }
-      );
-      return vote;
+    login: async (parent, { email, password }) => {
+      const user = await User.findOne({ email });
+
+      if (!user) {
+        throw new AuthenticationError('No user found with this email address');
+      }
+
+      const correctPw = await user.isCorrectPassword(password);
+
+      if (!correctPw) {
+        throw new AuthenticationError('Incorrect credentials');
+      }
+
+      const token = signToken(user);
+
+      return { token, user };
+    },
+    addCharacter: async (parent, { characterName, race, className, hitPoints, strength, dexterity, constitution, intelligence, wisdom, charisma }, context) => {
+      if (context.user) {
+        const character = await Character.create({
+          characterName,
+          race,
+          className,
+          hitPoints,
+          strength,
+          dexterity,
+          constitution,
+          intelligence,
+          wisdom,
+          charisma,
+          madeBy: context.user.username
+        });
+
+        await User.findOneAndUpdate(
+          { _id: context.user._id },
+          { $addToSet: { characters: character._id } }
+        );
+
+        return character;
+      }
+      throw new AuthenticationError('You need to be logged in!');
+    },
+    deleteCharacter: async (parent, { characterId }, context) => {
+      if (context.user) {
+        const character = await Character.findOneAndDelete({
+          _id: characterId,
+          madeBy: context.user.username,
+        });
+
+        await User.findOneAndUpdate(
+          { _id: context.user._id },
+          { $pull: { characters: character._id } }
+        );
+
+        return character;
+      }
+      throw new AuthenticationError('You need to be logged in!');
+    },
+    addNote: async (parent, { characterId, title, text, timestamp }, context) => {
+      if (context.user) {
+        const note = await Note.create({
+          title,
+          text,
+          timestamp
+        });
+
+        await Character.findOneAndUpdate(
+          { _id: characterId },
+          { $addToSet: { notes: note._id } }
+        );
+
+        return note;
+      }
+      throw new AuthenticationError('You need to be logged in!');
+    },
+    deleteNote: async (parent, { characterId, noteId }, context) => {
+      if (context.user) {
+        const note = await Note.findOneAndDelete({
+          _id: noteId,
+        });
+
+        await Character.findOneAndUpdate(
+          { _id: characterId },
+          { $pull: { notes: note._id } }
+        );
+
+        return note;
+      }
+      throw new AuthenticationError('You need to be logged in!');
     },
   },
 };
