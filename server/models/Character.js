@@ -41,7 +41,7 @@ const characterSchema = new Schema({
   madeBy: {
     type: String
   },
-  character: [notes]
+  notes: [noteSchema]
 });
 
 const Character = model('Character', characterSchema);
