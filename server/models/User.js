@@ -15,7 +15,10 @@ const userSchema = new Schema({
       required: true
   } ,
 
-  characters: [characterSchema],
+  characters: [{
+    type: Schema.Types.ObectId,
+    ref: 'Character'
+  },]
 
 }
 );
