@@ -31,7 +31,33 @@ const Profile = () => {
 
   return (
     <div>
+      <div className="">
+        <h2 className="">
+          Viewing {userParam ? `${user.username}'s` : 'your'} profile.
+        </h2>
+        <div className='right-align'>
+          <section className=''>
+            <Searchbox/>
+          </section>
+        </div>
 
+        <div className="">
+          <CharacterList
+            characters={user.characters}
+            title={`${user.username}'`}
+            showTitle={false}
+            showUsername={false}
+          />
+        </div>
+        {!userParam && (
+          <div
+            className=""
+            style={{ border: '1px dotted #1a1a1a' }}
+          >
+            <section />
+          </div>
+        )}
+      </div>
     </div>
   );
 };
