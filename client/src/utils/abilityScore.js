@@ -1,3 +1,5 @@
+import Character from '../../../server/models/Character';
+
 function generateScore() {
   let a1 = Math.floor(Math.random() * 6 + 1);
   let a2 = Math.floor(Math.random() * 6 + 1);
@@ -52,20 +54,36 @@ function d12HP() {
 }
 
 function meleeAttack() {
-    let attackMelee = Math.floor((Math.random() * 20) + `${characterStr + characterProf}`)
+    let attackMelee = Math.floor((Math.random() * 20) + 1 (`${Character.strength} + ${Character.proficiency}`))
     return attackMelee;
 }
 
 function rangedAttack() {
-    let attackRange = Math.floor((Math.random() * 20) + `${characterDex + characterProf}`)
+    let attackRange = Math.floor((Math.random() * 20) + 1 (`${Character.dexterity} + ${Character.proficiency}`))
     return attackRange;
 }
 
 function spellAttack() {
-    let attackSpell = Math.floor((Math.random() * 20) + `${characterInt || CharacterChar || CharacterWis + characterProf}`)
+    let attackSpell = Math.floor((Math.random() * 20) + 1 + (`${Character.intelligence || Character.charisma || Character.wisdom + Character.proficiency}`))
     return attackSpell;
+}
+
+function abilitySave() {
+    let saveScore = Math.floor((Math.random() * 20) + 1 + (`${Character.strength || Character.dexterity || Character.constitution || Character.intelligence || Character.wisdom || Character.charisma}`))
+    return saveScore;
+}
+
+function skillCheck() {
+    let skillRoll = Math.floor((Math.random() * 20) + 1 + (`${Character.strength || Character.dexterity || Character.constitution || Character.intelligence || Character.wisdom || Character.charisma}`) + (Character.proficiency))
+    return skillRoll;
+
+}
+
+function weaponDamage() {
+    let damageRoll = Math.floor((Math.random() * `${weapon.damage.damage_dice}`) + 1)
 }
 
 
 
-module.exports = { generateScore, getModifier, d6HP, d8HP, d10HP, d12HP, meleeAttack, rangedAttack, spellAttack };
+
+module.exports = { generateScore, getModifier, d6HP, d8HP, d10HP, d12HP, meleeAttack, rangedAttack, spellAttack, abilitySave, skillCheck };
