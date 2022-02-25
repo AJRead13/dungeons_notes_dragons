@@ -21,6 +21,10 @@ const Navbar = () => {
     setAnchorEl(null);
   };
 
+  const handleTabChange = (event, newTab) => {
+    setTab(newTab);
+  }
+
   return (
     <>
       <AppBar position="static">
@@ -75,7 +79,7 @@ const Navbar = () => {
         onClose={() => setShowModal(false)}
       >
         <Box>
-          <Tabs value={tab} onChange={setTab}>
+          <Tabs value={tab} onChange={handleTabChange}>
             <Tab label="Log In" />
             <Tab label="Sign Up" />
           </Tabs>

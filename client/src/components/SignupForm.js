@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
-import { Alert, AlertTitle, Box, Button, IconButton, TextField, Visibility, VisibilityOff } from '@mui/material';
+import { Alert, AlertTitle, Box, Button, IconButton, TextField } from '@mui/material';
+import { Visibility, VisibilityOff } from '@mui/icons-material';
 import { useMutation } from '@apollo/client';
 import { ADD_USER } from '../utils/mutations';
 import Auth from '../utils/auth';
@@ -56,7 +57,7 @@ const SignupForm = () => {
   return (
     <>
       {error && (     
-        <Alert severity="error" onClose={() => {}}>
+        <Alert severity="error">
           <AlertTitle>Error</AlertTitle>
           Something went wrong with your signup!
         </Alert>
@@ -96,15 +97,15 @@ const SignupForm = () => {
                   onMouseDown={handleMouseDownPassword}
                   edge="end"
                 >
-                  {showPassword ? <VisibilityOff /> : <Visibility />}
+                  {showPassword ? <Visibility /> : <VisibilityOff />}
                 </IconButton>
                )
                }}
         />
-        <Button variant="contained" onClick={handleFormSubmit}>Log In</Button>
+        <Button variant="contained" onClick={handleFormSubmit}>Sign Up</Button>
       </Box>
     </>
   )
 }
 
-module.exports = SignupForm;
+export default SignupForm;

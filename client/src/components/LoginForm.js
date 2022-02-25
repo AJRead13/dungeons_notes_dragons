@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
-import { Alert, AlertTitle, Box, Button, IconButton, TextField, Visibility, VisibilityOff } from '@mui/material';
+import { Alert, AlertTitle, Box, Button, IconButton, TextField } from '@mui/material';
+import { Visibility, VisibilityOff } from '@mui/icons-material';
 import { useMutation } from '@apollo/client';
 import { LOGIN_USER } from '../utils/mutations';
 import Auth from '../utils/auth';
@@ -89,7 +90,7 @@ const LoginForm = () => {
                   onMouseDown={handleMouseDownPassword}
                   edge="end"
                 >
-                  {showPassword ? <VisibilityOff /> : <Visibility />}
+                  {showPassword ? <Visibility /> : <VisibilityOff />}
                 </IconButton>
                )
                }}
@@ -100,4 +101,4 @@ const LoginForm = () => {
   )
 }
 
-module.exports = LoginForm;
+export default LoginForm;
