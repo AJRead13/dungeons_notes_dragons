@@ -1,7 +1,5 @@
 const { Schema, model } = require('mongoose');
-const bcrypt = require("bcrypt");
-
-const characterSchema = require('./Character');
+const Character = require('./Character');
 const userSchema = new Schema({
 	username: {
 		type: String,
