@@ -8,6 +8,6 @@ db.once('open', async () => {
 
   const technologies = await Tech.insertMany(techData);
 
-  console.log('Technologies seeded!');
+  console.log('Users and Characters Seeded!');
   process.exit(0);
 });
