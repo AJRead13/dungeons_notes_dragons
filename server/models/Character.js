@@ -10,7 +10,7 @@ const characterSchema = new Schema({
 		type: String,
 		required: true,
 	},
-	hitpoints: {
+	hitPoints: {
 		type: Int,
 		required: true,
 	},
@@ -38,6 +38,9 @@ const characterSchema = new Schema({
 		type: Int,
 		required: true,
 	},
+  madeBy: {
+    type: String
+  },
   character: [noteSchema]
 });
 
