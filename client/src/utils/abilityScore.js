@@ -51,11 +51,21 @@ function d12HP() {
     return d12;
 }
 
-function attackRoll() {
+function meleeAttack() {
     let attackMelee = Math.floor((Math.random() * 20) + `${characterStr + characterProf}`)
     return attackMelee;
 }
 
+function rangedAttack() {
+    let attackRange = Math.floor((Math.random() * 20) + `${characterDex + characterProf}`)
+    return attackRange;
+}
+
+function spellAttack() {
+    let attackSpell = Math.floor((Math.random() * 20) + `${characterInt || CharacterChar || CharacterWis + characterProf}`)
+    return attackSpell;
+}
 
 
-module.exports = { generateScore, getModifier, d6HP, d8HP, d10HP, d12HP, attackRoll };
+
+module.exports = { generateScore, getModifier, d6HP, d8HP, d10HP, d12HP, meleeAttack, rangedAttack, spellAttack };
