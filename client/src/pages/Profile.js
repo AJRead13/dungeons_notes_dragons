@@ -5,7 +5,7 @@ import Auth from '../utils/auth';
 import { Link } from 'react-router-dom'
 import CharSheet from '../components/CharSheet';
 import Searchbox from '../components/Searchbox';
-import { QUERY_USER, GET_Me} from '../utils/queries'
+import { QUERY_USER, GET_ME} from '../utils/queries'
 
 const Profile = () => {
   const { username: userParam} = userParams();
