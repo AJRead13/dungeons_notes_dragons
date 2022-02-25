@@ -16,7 +16,7 @@ const noteSchema = new Schema({
 		get: (timestamp) => dateFormat(timestamp),
 	},
 });
-const Note = model("Note", noteSchema);
+// const Note = model("Note", noteSchema);
 
-    module.exports = Note;
+    module.exports = noteSchema;
   

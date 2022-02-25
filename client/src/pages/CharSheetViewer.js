@@ -12,7 +12,7 @@ const CharSheetViewer = () => {
     <div>
       <form className="charSheet">
         <header>
-          <section
+          <section></section>
         </header>
       </form>
     </div>
