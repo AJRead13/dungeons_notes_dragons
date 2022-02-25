@@ -5,15 +5,21 @@ import Auth from '../utils/auth';
 import { Link } from 'react-router-dom'
 import CharSheet from '../components/CharSheet';
 import Searchbox from '../components/Searchbox';
-import { QUERY_USER, GET_ME} from '../utils/queries'
+import { GET_ME } from '../utils/queries'
 
 const Profile = () => {
+<<<<<<< HEAD
   const { username: userParam} = userParams();
   const { loading, data } = useQuery(userParam ? QUERY_USER : GET_ME, {
     variables: { username: userParam },
+=======
+  const { loading, data } = useQuery(GET_ME, {
+    fetchPolicy: "no-cache"
+>>>>>>> b80c4f9 (fixing the profile jawn)
   });
+
   const user = data?.me || data?.user || {};
-  if (Auth.loggedIn() && Auth.getProfile().data.username === userParam) {
+  if (Auth.loggedIn()) {
     return <Redirect to="/me"/>;
   }
 
@@ -33,7 +39,7 @@ const Profile = () => {
     <div>
       <div className="">
         <h2 className="">
-          Viewing {userParam ? `${user.username}'s` : 'your'} profile.
+          Viewing Your Profile.
         </h2>
         <div className='right-align'>
           <section className=''>
@@ -42,21 +48,14 @@ const Profile = () => {
         </div>
 
         <div className="">
-          <CharacterList
+          {/* <CharacterList
             characters={user.characters}
             title={`${user.username}'`}
             showTitle={false}
             showUsername={false}
-          />
+          /> */}
         </div>
-        {!userParam && (
-          <div
-            className=""
-            style={{ border: '1px dotted #1a1a1a' }}
-          >
-            <section />
-          </div>
-        )}
+      
       </div>
     </div>
   );
