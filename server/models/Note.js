@@ -2,12 +2,15 @@ const { Schema, model } = require('mongoose');
 
 
 const noteSchema = new Schema({
-	noteText: {
+    title:{
+        type: String
+    },
+	text: {
 		type: String,
 		required: true,
 		unique: true,
 	},
-	createdAt: {
+	timestamp: {
 		type: Date,
 		default: Date.now,
 		get: (timestamp) => dateFormat(timestamp),
