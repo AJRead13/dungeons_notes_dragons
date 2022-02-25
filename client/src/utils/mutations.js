@@ -50,5 +50,48 @@ export const ADD_CHARACTER = gql`
 `;
 
 export const DELETE_CHARACTER = gql`
-  mutation deleteCharacter($characterId: ID!)
+  mutation deleteCharacter($characterId: ID!) {
+    deleteCharacter(characterId: $characterId){
+      _id
+      characterName
+      race
+      className
+      hitPoints
+      strength
+      dexterity
+      constitution
+      intelligence
+      wisdom
+      charisma
+      notes {
+        _id
+        title
+        text
+        timestamp
+      }
+      madeBy
+    }
+  }
+`;
+
+export const ADD_NOTE = gql`
+  mutation addNote($characterId: ID!, $title: String, $text: String, $timestamp: String){
+    addNote(characterId: $characterId, title: $title, text: $text, timestamp: $timestamp){
+      _id
+      title
+      text
+      timestamp
+    }
+  }
+`;
+
+export const DELETE_NOTE = gql`
+  mutation deleteNote($characterId: ID!, $noteId: ID!){
+    deleteNote(characterId: $characterId, noteId: $noteId){
+      _id
+      title
+      text
+      timestamp
+    }
+  }
 `;
