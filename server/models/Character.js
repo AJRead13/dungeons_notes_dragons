@@ -1,12 +1,12 @@
 const { Schema, model } = require('mongoose');
 const noteSchema = require('./Note')
 const characterSchema = new Schema({
-	username: {
+	characterName: {
 		type: String,
 		required: true,
 		unique: true,
 	},
-	class: {
+	className: {
 		type: String,
 		required: true,
 	},
