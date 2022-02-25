@@ -11,31 +11,31 @@ const characterSchema = new Schema({
 		required: true,
 	},
 	hitPoints: {
-		type: Int,
+		type: Number,
 		required: true,
 	},
 	strength: {
-		type: Int,
+		type: Number,
 		required: true,
 	},
 	dexterity: {
-		type: Int,
+		type: Number,
 		required: true,
 	},
 	constitution: {
-		type: Int,
+		type: Number,
 		required: true,
 	},
 	intelligence: {
-		type: Int,
+		type: Number,
 		required: true,
 	},
 	wisdom: {
-		type: Int,
+		type: Number,
 		required: true,
 	},
 	charisma: {
-		type: Int,
+		type: Number,
 		required: true,
 	},
   madeBy: {
