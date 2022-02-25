@@ -51,8 +51,9 @@ function d12HP() {
     return d12;
 }
 
-// function attackRoll() {
-//     let attackMelee = Math.floor((Math.random() * 20) + `${characterStr}`)
-// }
+function attackRoll() {
+    let attackMelee = Math.floor((Math.random() * 20) + `${characterStr + characterProf}`)
+    return attackMelee;
+}
 
-module.exports = { generateScore, getModifier, d6HP, d8HP, d10HP, d12HP };
+module.exports = { generateScore, getModifier, d6HP, d8HP, d10HP, d12HP, attackRoll };
