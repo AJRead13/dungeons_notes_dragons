@@ -1,5 +1,5 @@
 import React from 'react';
-import { Redirect, userParams } from 'react-router-dom';
+import { Redirect, useParams } from 'react-router-dom';
 import { useQuery } from '@apollo/client';
 import Auth from '../utils/auth';
 import { Link } from 'react-router-dom'
@@ -8,12 +8,12 @@ import Searchbox from '../components/Searchbox';
 import { QUERY_USER, GET_ME} from '../utils/queries'
 
 const Profile = () => {
-  const { username: userParam} = userParams();
-  const { loading, data } = useQuery(userParam ? QUERY_USER : GET_ME, {
-    variables: { username: userParam },
+  const { username: useParam} = useParams();
+  const { loading, data } = useQuery(useParam ? QUERY_USER : GET_ME, {
+    variables: { username: useParam },
   });
   const user = data?.me || data?.user || {};
-  if (Auth.loggedIn() && Auth.getProfile().data.username === userParam) {
+  if (Auth.loggedIn() && Auth.getProfile().data.username === useParam) {
     return <Redirect to="/me"/>;
   }
 
@@ -33,7 +33,7 @@ const Profile = () => {
     <div>
       <div className="">
         <h2 className="">
-          Viewing {userParam ? `${user.username}'s` : 'your'} profile.
+          Viewing {useParam ? `${user.username}'s` : 'your'} profile.
         </h2>
         <div className='right-align'>
           <section className=''>
@@ -49,7 +49,7 @@ const Profile = () => {
             showUsername={false}
           />
         </div>
-        {!userParam && (
+        {!useParam && (
           <div
             className=""
             style={{ border: '1px dotted #1a1a1a' }}
