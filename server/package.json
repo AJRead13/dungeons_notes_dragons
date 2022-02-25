@@ -15,10 +15,7 @@
     "dotenv": "^16.0.0",
     "express": "^4.17.1",
     "graphql": "^15.5.1",
-<<<<<<< HEAD
     "jsonwebtoken": "^8.5.1",
-=======
->>>>>>> e22b590 (updated additional dice utils)
     "mongoose": "^5.11.6"
   },
   "devDependencies": {
