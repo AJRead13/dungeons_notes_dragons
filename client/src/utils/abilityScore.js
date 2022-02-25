@@ -80,10 +80,11 @@ function skillCheck() {
 }
 
 function weaponDamage() {
-    let damageRoll = Math.floor((Math.random() * `${weapon.damage.damage_dice}`) + 1)
+    let damageRoll = Math.floor((Math.random() * `${weapon.damage.damage_dice.split("d")}`) + 1)
+    return damageRoll;
 }
 
 
 
 
-module.exports = { generateScore, getModifier, d6HP, d8HP, d10HP, d12HP, meleeAttack, rangedAttack, spellAttack, abilitySave, skillCheck };
+module.exports = { generateScore, getModifier, d6HP, d8HP, d10HP, d12HP, meleeAttack, rangedAttack, spellAttack, abilitySave, skillCheck, weaponDamage  };
