@@ -1,41 +1,41 @@
 const { Schema, model } = require('mongoose');
 const noteSchema = require('./Note')
 const characterSchema = new Schema({
-	username: {
+	characterName: {
 		type: String,
 		required: true,
 		unique: true,
 	},
-	class: {
+	className: {
 		type: String,
 		required: true,
 	},
 	hitPoints: {
-		type: Int,
+		type: Number,
 		required: true,
 	},
 	strength: {
-		type: Int,
+		type: Number,
 		required: true,
 	},
 	dexterity: {
-		type: Int,
+		type: Number,
 		required: true,
 	},
 	constitution: {
-		type: Int,
+		type: Number,
 		required: true,
 	},
 	intelligence: {
-		type: Int,
+		type: Number,
 		required: true,
 	},
 	wisdom: {
-		type: Int,
+		type: Number,
 		required: true,
 	},
 	charisma: {
-		type: Int,
+		type: Number,
 		required: true,
 	},
   madeBy: {
