@@ -48,3 +48,7 @@ export const ADD_CHARACTER = gql`
     }
   }
 `;
+
+export const DELETE_CHARACTER = gql`
+  mutation deleteCharacter($characterId: ID!)
+`;

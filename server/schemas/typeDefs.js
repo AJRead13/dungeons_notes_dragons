@@ -44,7 +44,7 @@ const typeDefs = gql`
     addUser(username: String!, email: String!, password: String!): Auth
     login(email: String!, password: String!): Auth
     addCharacter(characterName: String, race: String, className: String, hitPoints: Int, strength: Int, dexterity: Int, constitution: Int, intelligence: Int, wisdom: Int, charisma: Int): Character
-    deleteCharacter(charactersID: ID!): Character
+    deleteCharacter(characterId: ID!): Character
     addNote(characterId: ID!, title: String, text: String, timestamp: String): Note
     deleteNote(characterId: ID!, noteId: ID!): Note
   }
