@@ -5,10 +5,10 @@ import Searchbox from '../components/Searchbox';
 
 const Profile = () => {
   return (
-    <>
+		<>
 
-    </>
-  )
+		</>
+	);
 }
 
 export default Profile;
