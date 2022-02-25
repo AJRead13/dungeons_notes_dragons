@@ -1,5 +1,5 @@
 import React from 'react';
-import { Redirect, userParams } from 'react-router-dom';
+import { Redirect, useParams } from 'react-router-dom';
 import { useQuery } from '@apollo/client';
 import Auth from '../utils/auth';
 import { Link } from 'react-router-dom'
@@ -8,7 +8,7 @@ import Searchbox from '../components/Searchbox';
 import { QUERY_USER, GET_ME} from '../utils/queries'
 
 const Profile = () => {
-  const { username: userParam} = userParams();
+  const { username: userParam} = useParams();
   const { loading, data } = useQuery(userParam ? QUERY_USER : GET_ME, {
     variables: { username: userParam },
   });
