@@ -10,18 +10,8 @@ const SignupForm = () => {
   const [userFormData, setUserFormData] = useState({ username: '', email: '', password: '' });
   const [invalidEmail, setInvalidEmail] = useState(false);
   const [showPassword, setShowPassword] = useState(false);
-  const [addUser, { error }] = useMutation(ADD_USER);
+  const [addUser, { error, data }] = useMutation(ADD_USER);
 
-  // const handleInputChange = (event) => {
-  //   const { name, value } = event.target;
-  //   setUserFormData({ ...userFormData, [name]: value });
-  //   if (name === 'email') {
-  //     const form = event.currentTarget;
-  //     if (form.checkValidity() === false) {
-  //       setInvalidEmail(true);
-  //     }
-  //   }
-  // };
   const handleInputChange = (event) => {
     const { name, value } = event.target;
     setUserFormData({ ...userFormData, [name]: value });
@@ -39,15 +29,12 @@ const SignupForm = () => {
     event.preventDefault();
 
     const input = event.currentTarget;
+    console.log(input);
     if (input.checkValidity() === false) {
       event.preventDefault();
       event.stopPropagation();
     }
-
     try {
-      // const { token, user } = await addUser(userFormData);
-      // console.log(user);
-      // Auth.login(token);
       const { data } = await addUser({
         variables: { ...userFormData },
       })

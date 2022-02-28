@@ -59,12 +59,12 @@ const Navbar = () => {
                   onClose={handleClose}
                 >
                   <MenuItem 
-                    containerElement={<Link to="/profile" />}
-                    primaryText="Profile"
+                    containerelement={<Link to="/profile" />}
+                    primarytext="Profile"
                   />
                   <MenuItem
                     onClick={Auth.logout}
-                    primaryText="Logout"
+                    primarytext="Logout"
                   />
                 </Menu>
             </>

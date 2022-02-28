@@ -1,5 +1,3 @@
-import Character from '../../../server/models/Character';
-
 function generateScore() {
   let a1 = Math.floor(Math.random() * 6 + 1);
   let a2 = Math.floor(Math.random() * 6 + 1);
@@ -85,6 +83,4 @@ function d12HP() {
 // }
 
 
-
-
-module.exports = { generateScore, getModifier, d6HP, d8HP, d10HP, d12HP};
+module.exports = { generateScore, getModifier, d6HP, d8HP, d10HP, d12HP };
