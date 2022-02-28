@@ -8,7 +8,7 @@ import Auth from '../utils/auth';
 import { generateScore } from '../utils/abilityScore';
 
 const CharForm = () => {
-  const [charFormData, setCharFormData] = useState({ characterName: '', className: '', hitPoints: 0, strength: 0, dexterity: 0, constitution: 0, intelligence: 0, wisdom: 0, charisma: 0 });
+  const [charFormData, setCharFormData] = useState({ characterName: '', race: '', className: '', hitPoints: 0, strength: 0, dexterity: 0, constitution: 0, intelligence: 0, wisdom: 0, charisma: 0 });
   const stats = [{stat: "strength", score: 0}, {stat: "dexterity", score: 0}, {stat: "constitution", score: 0}, {stat: "intelligence", score: 0}, {stat: "wisdom", score: 0}, {stat: "charisma", score: 0}];
 
   const [addCharacter, { error }] = useMutation(ADD_CHARACTER, {
@@ -36,6 +36,7 @@ const CharForm = () => {
   const handleInputChange = (event) => {
     const { name, value } = event.target;
     setCharFormData({ ...charFormData, [name]: value });
+    console.log(charFormData)
   };
 
   const handleFormSubmit = async (event) => {
@@ -46,7 +47,7 @@ const CharForm = () => {
     if (!token) {
       return false;
     }
-
+    console.log(charFormData);
     try {
       const { data } = await addCharacter({
         variables: {
@@ -91,6 +92,7 @@ const CharForm = () => {
       Race
       </InputLabel>
       <NativeSelect
+        onChange={handleInputChange}
         defaultValue = {"Select"}
         inputProps={{
           name: 'race',
@@ -98,11 +100,13 @@ const CharForm = () => {
         }}
       >
       <option value={"race"}>race</option>
+      <option value={"race1"}>race1</option>
       </NativeSelect>
-      <InputLabel id="new-race">
+      <InputLabel id="new-className">
       Class
       </InputLabel>
       <NativeSelect
+        onChange={handleInputChange}
         defaultValue = {"Select"}
         inputProps={{
           name: 'className',
@@ -110,21 +114,22 @@ const CharForm = () => {
         }}
       >
       <option value={"class"}>class</option>
+      <option value={"class1"}>class1</option>
       </NativeSelect>
       <InputLabel id="new-hitPoints">Hit Points</InputLabel>
-      <Input id="new-hitPoints" defaultValue={10} />
+      <Input id="new-hitPoints" defaultValue={10} onChange={handleInputChange} />
       <InputLabel id="new-strength">Strength</InputLabel>
-      <Input id="new-strength" defaultValue={stats[0].score} />
+      <Input id="new-strength" defaultValue={0} onChange={handleInputChange} />
       <InputLabel id="new-dexterity">Dexterity</InputLabel>
-      <Input id="new-dexterity" defaultValue={stats[1].score} />
+      <Input id="new-dexterity" defaultValue={0} onChange={handleInputChange} />
       <InputLabel id="new-constitution">Constitution</InputLabel>
-      <Input id="new-constitution" defaultValue={stats[2].score} />
+      <Input id="new-constitution" defaultValue={0} onChange={handleInputChange} />
       <InputLabel id="new-intelligence">Intelligence</InputLabel>
-      <Input id="new-intelligence" defaultValue={stats[3].score} />
+      <Input id="new-intelligence" defaultValue={0} onChange={handleInputChange} />
       <InputLabel id="new-wisdom">Wisdom</InputLabel>
-      <Input id="new-wisdom" defaultValue={stats[4].score} />
+      <Input id="new-wisdom" defaultValue={0} onChange={handleInputChange} />
       <InputLabel id="new-charisma">Charisma</InputLabel>
-      <Input id="new-charisma" defaultValue={stats[5].score} />
+      <Input id="new-charisma" defaultValue={0} onChange={handleInputChange} />
       
       {/* <Button variant="contained" onClick={handleStats}>Generate Stats</Button> */}
       <Button variant="contained" onClick={handleFormSubmit}>Create</Button>
