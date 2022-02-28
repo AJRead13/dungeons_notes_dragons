@@ -5,21 +5,26 @@ import { useMutation } from '@apollo/client';
 import { ADD_USER } from '../utils/mutations';
 import Auth from '../utils/auth';
 
+
 const SignupForm = () => {
   const [userFormData, setUserFormData] = useState({ username: '', email: '', password: '' });
   const [invalidEmail, setInvalidEmail] = useState(false);
   const [showPassword, setShowPassword] = useState(false);
   const [addUser, { error }] = useMutation(ADD_USER);
 
+  // const handleInputChange = (event) => {
+  //   const { name, value } = event.target;
+  //   setUserFormData({ ...userFormData, [name]: value });
+  //   if (name === 'email') {
+  //     const form = event.currentTarget;
+  //     if (form.checkValidity() === false) {
+  //       setInvalidEmail(true);
+  //     }
+  //   }
+  // };
   const handleInputChange = (event) => {
     const { name, value } = event.target;
     setUserFormData({ ...userFormData, [name]: value });
-    if (name === 'email') {
-      const form = event.currentTarget;
-      if (form.checkValidity() === false) {
-        setInvalidEmail(true);
-      }
-    }
   };
 
   const handleClickShowPassword = () => {
@@ -40,11 +45,15 @@ const SignupForm = () => {
     }
 
     try {
-      const { token, user } = await addUser(userFormData);
-      console.log(user);
-      Auth.login(token);
+      // const { token, user } = await addUser(userFormData);
+      // console.log(user);
+      // Auth.login(token);
+      const { data } = await addUser({
+        variables: { ...userFormData },
+      })
+      Auth.login(data.addUser.token);
     } catch (err) {
-      console.error(err);
+      console.log(JSON.parse(JSON.stringify(err)))
     }
 
     setUserFormData({
