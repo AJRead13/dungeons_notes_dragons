@@ -87,4 +87,4 @@ function skillCheck() {
 
 
 
-module.exports = { generateScore, getModifier, d6HP, d8HP, d10HP, d12HP, meleeAttack, rangedAttack, spellAttack, abilitySave, skillCheck, weaponDamage  };
+module.exports = { generateScore, getModifier, d6HP, d8HP, d10HP, d12HP, meleeAttack, rangedAttack, spellAttack, abilitySave, skillCheck };
