@@ -79,10 +79,10 @@ function skillCheck() {
 
 }
 
-function weaponDamage() {
-    let damageRoll = Math.floor((Math.random() * `${weapon.damage.damage_dice.split("d")}`) + 1)
-    return damageRoll;
-}
+// function weaponDamage() {
+//     let damageRoll = Math.floor((Math.random() * `${weapon.damage.damage_dice.split("d")}`) + 1)
+//     return damageRoll;
+// }
 
 
 
