@@ -9,19 +9,20 @@ const userSchema = new Schema({
 		type: String,
 		required: true,
 		unique: true,
-		match: [/.+@.+\..+/, "Must use a valid email address"],
+		match: [
+			/^([a-z0-9_\.-]+)@([\da-z\.-]+)\.([a-z\.]{2,6})$/,
+			"Must use a valid email address",
+		],
 	},
-  password: {type: String,
-      required: true
-  } ,
+	password: { type: String, required: true },
 
-  characters: [{
-    type: Schema.Types.ObjectId,
-    ref: 'Character'
-  },]
-
-}
-);
+	characters: [
+		{
+			type: Schema.Types.ObjectId,
+			ref: "Character",
+		},
+	],
+});
 
 userSchema.pre('save', async function (next) {
   if (this.isNew || this.isModified('password')) {
