@@ -7,6 +7,7 @@ import { getRaceInfo, getClassInfo } from "../utils/API";
 import CharSheet from '../components/CharSheet';
 import Searchbox from '../components/Searchbox';
 
+
 const Home = () => {
 	const { loading, data } = useQuery(GET_ME, {
 		fetchPolicy: "no-cache",
