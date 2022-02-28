@@ -33,6 +33,8 @@ function getModifier(finalScore) {
   return Math.floor((finalScore - 10) / 2);
 }
 
+//below is hitpoint rolls for leveling up
+
 function d6HP() {
   let d6 = Math.floor((Math.random() * 6) + 1);
   return d6;
@@ -53,6 +55,8 @@ function d12HP() {
     return d12;
 }
 
+//below are the different attack style rolls
+
 function meleeAttack() {
     let attackMelee = Math.floor((Math.random() * 20) + 1 (`${Character.strength + Character.proficiency}`))
     return attackMelee;
@@ -67,6 +71,8 @@ function spellAttack() {
     let attackSpell = Math.floor((Math.random() * 20) + 1 + (`${Character.intelligence || Character.charisma || Character.wisdom + Character.proficiency}`))
     return attackSpell;
 }
+
+//various die rolls for checks and saves
 
 function abilitySave() {
     let saveScore = Math.floor((Math.random() * 20) + 1 + (`${Character.strength || Character.dexterity || Character.constitution || Character.intelligence || Character.wisdom || Character.charisma}`))
