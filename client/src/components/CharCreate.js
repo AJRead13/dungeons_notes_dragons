@@ -41,6 +41,12 @@ const CharForm = () => {
   const handleFormSubmit = async (event) => {
     event.preventDefault();
 
+    const token = Auth.loggedIn() ? Auth.getToken() : null;
+
+    if (!token) {
+      return false;
+    }
+
     try {
       const { data } = await addCharacter({
         variables: {
@@ -120,7 +126,7 @@ const CharForm = () => {
       <InputLabel id="new-charisma">Charisma</InputLabel>
       <Input id="new-charisma" defaultValue={stats[5].score} />
       
-      <Button variant="contained" onClick={handleStats}>Generate Stats</Button>
+      {/* <Button variant="contained" onClick={handleStats}>Generate Stats</Button> */}
       <Button variant="contained" onClick={handleFormSubmit}>Create</Button>
     </Box>
   </>

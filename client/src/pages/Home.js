@@ -11,12 +11,16 @@ import CharCreate from '../components/CharCreate'
 
 
 const Home = () => {
-	const { loading, data } = useQuery(GET_ME, {
+	const { loading, data, error } = useQuery(GET_ME, {
 		fetchPolicy: "no-cache",
 	});
 
 	const characterList = data?.characters || [];
   const [showModal, setShowModal] = useState(false);
+
+	if(error){
+		console.log(JSON.parse(JSON.stringify(error)));
+	}
 
 	return (
 		<div className="card bg-white card-rounded w-50">
