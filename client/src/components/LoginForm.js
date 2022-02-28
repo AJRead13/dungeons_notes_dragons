@@ -12,15 +12,19 @@ const LoginForm = () => {
   const [loginUser, { error }] = useMutation(LOGIN_USER);
 
 
+  // const handleInputChange = (event) => {
+  //   const { name, value } = event.target;
+  //   setUserFormData({ ...userFormData, [name]: value });
+  //   if (name === 'email') {
+  //     const form = event.currentTarget;
+  //     if (form.checkValidity() === false) {
+  //       setInvalidEmail(true);
+  //     }
+  //   }
+  // };
   const handleInputChange = (event) => {
     const { name, value } = event.target;
     setUserFormData({ ...userFormData, [name]: value });
-    if (name === 'email') {
-      const form = event.currentTarget;
-      if (form.checkValidity() === false) {
-        setInvalidEmail(true);
-      }
-    }
   };
 
   const handleClickShowPassword = () => {
@@ -41,9 +45,13 @@ const LoginForm = () => {
     }
 
     try {
-      const { token, user } = await loginUser(userFormData);
-      console.log(user);
-      Auth.login(token);
+      // const { token, user } = await loginUser(userFormData);
+      // console.log(user);
+      // Auth.login(token);
+      const { data } = await loginUser({
+        variables: { ...userFormData },
+      })
+      Auth.login(data.login.token);
     } catch (err) {
       console.error(err);
     }
