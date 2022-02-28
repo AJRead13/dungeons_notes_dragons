@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { Alert, AlertTitle, Box, Button, IconButton, TextField, InputLabel, NativeSelect, Input } from '@mui/material';
 import { Visibility, VisibilityOff } from '@mui/icons-material';
 import { useMutation } from '@apollo/client';
+import { GET_ME, QUERY_CHARACTERS } from '../utils/queries';
 import { ADD_CHARACTER } from '../utils/mutations';
 import Auth from '../utils/auth';
 import { generateScore } from '../utils/abilityScore';
@@ -105,19 +106,19 @@ const CharForm = () => {
       <option value={"class"}>class</option>
       </NativeSelect>
       <InputLabel id="new-hitPoints">Hit Points</InputLabel>
-      <Input id="new-hitPoints" defaultValue={10} inputProps={ariaLabel} />
+      <Input id="new-hitPoints" defaultValue={10} />
       <InputLabel id="new-strength">Strength</InputLabel>
-      <Input id="new-strength" defaultValue={stats[0].score} inputProps={ariaLabel} />
+      <Input id="new-strength" defaultValue={stats[0].score} />
       <InputLabel id="new-dexterity">Dexterity</InputLabel>
-      <Input id="new-dexterity" defaultValue={stats[1].score} inputProps={ariaLabel} />
+      <Input id="new-dexterity" defaultValue={stats[1].score} />
       <InputLabel id="new-constitution">Constitution</InputLabel>
-      <Input id="new-constitution" defaultValue={stats[2].score} inputProps={ariaLabel} />
+      <Input id="new-constitution" defaultValue={stats[2].score} />
       <InputLabel id="new-intelligence">Intelligence</InputLabel>
-      <Input id="new-intelligence" defaultValue={stats[3].score} inputProps={ariaLabel} />
+      <Input id="new-intelligence" defaultValue={stats[3].score} />
       <InputLabel id="new-wisdom">Wisdom</InputLabel>
-      <Input id="new-wisdom" defaultValue={stats[4].score} inputProps={ariaLabel} />
+      <Input id="new-wisdom" defaultValue={stats[4].score} />
       <InputLabel id="new-charisma">Charisma</InputLabel>
-      <Input id="new-charisma" defaultValue={stats[5].score} inputProps={ariaLabel} />
+      <Input id="new-charisma" defaultValue={stats[5].score} />
       
       <Button variant="contained" onClick={handleStats}>Generate Stats</Button>
       <Button variant="contained" onClick={handleFormSubmit}>Create</Button>

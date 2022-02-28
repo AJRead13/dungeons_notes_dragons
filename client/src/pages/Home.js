@@ -1,11 +1,13 @@
-import React from 'react';
+import React, { useState } from 'react';
 import {Link} from 'react-router-dom';
 import { useQuery } from "@apollo/client";
 import { GET_ME } from "../utils/queries";
+import { Button, Dialog } from '@mui/material';
 import { getRaceInfo, getClassInfo } from "../utils/API";
 
 import CharSheet from '../components/CharSheet';
 import Searchbox from '../components/Searchbox';
+import CharCreate from '../components/CharCreate'
 
 
 const Home = () => {
@@ -14,6 +16,7 @@ const Home = () => {
 	});
 
 	const characterList = data?.characters || [];
+  const [showModal, setShowModal] = useState(false);
 
 	return (
 		<div className="card bg-white card-rounded w-50">
@@ -40,10 +43,14 @@ const Home = () => {
 			</div>
 			<div className="card-footer text-center m-3">
 				<h2>Create a new character:</h2>
-				<Link to="/character">
-					<button className="btn btn-lg btn-danger">Create</button>
-				</Link>
+					<Button className="btn btn-lg btn-danger" onClick={() => setShowModal(true)}>Create</Button>
 			</div>
+      <Dialog
+        open={showModal}
+        onClose={() => setShowModal(false)}
+      >
+        <CharCreate />
+      </Dialog>
 		</div>
 	);
 };
