@@ -8,7 +8,7 @@ import Auth from '../utils/auth';
 import { generateScore } from '../utils/abilityScore';
 
 const CharForm = () => {
-  const [charFormData, setCharFormData] = useState({ characterName: '', className: '', hitPoints: 0, strength: 0, dexterity: 0, constitution: 0, intelligence: 0, wisdom: 0, charisma: 0 });
+  const [charFormData, setCharFormData] = useState({ characterName: '', race: '', className: '', hitPoints: 10, strength: 0, dexterity: 0, constitution: 0, intelligence: 0, wisdom: 0, charisma: 0 });
   const stats = [{stat: "strength", score: 0}, {stat: "dexterity", score: 0}, {stat: "constitution", score: 0}, {stat: "intelligence", score: 0}, {stat: "wisdom", score: 0}, {stat: "charisma", score: 0}];
 
   const [addCharacter, { error }] = useMutation(ADD_CHARACTER, {
@@ -55,7 +55,7 @@ const CharForm = () => {
         },
       });
 
-      setCharFormData({ characterName: '', className: '', hitPoints: 0, strength: 0, dexterity: 0, constitution: 0, intelligence: 0, wisdom: 0, charisma: 0 });
+      setCharFormData({ characterName: '', race: '', className: '', hitPoints: 10, strength: 0, dexterity: 0, constitution: 0, intelligence: 0, wisdom: 0, charisma: 0 });
     } catch (err) {
       console.error(err);
     }
@@ -99,7 +99,7 @@ const CharForm = () => {
       >
       <option value={"race"}>race</option>
       </NativeSelect>
-      <InputLabel id="new-race">
+      <InputLabel id="new-className">
       Class
       </InputLabel>
       <NativeSelect

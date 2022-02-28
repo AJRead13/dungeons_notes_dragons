@@ -7,8 +7,8 @@ const noteSchema = new Schema({
     },
 	text: {
 		type: String,
-		required: true,
-		unique: true,
+		// required: true,
+		// unique: true,
 	},
 	timestamp: {
 		type: Date,
