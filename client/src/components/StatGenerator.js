@@ -1,6 +1,4 @@
 
-
-
 const getModifier = () => {
     let strScore = document.getElementById("strScore").value;
     document.getElementById("strMod").value = Math.floor((strScore - 10)/2);

@@ -1,22 +1,23 @@
 import React from "react";
 import getModifier from "./StatGenerator";
 import { generateScore, d6HP, d8HP, h10HP, d12HP, getHPTotal } from "../utils/abilityScore"
+import { QUERY_SINGLE_CHARACTER } from "../utils/queries";
 
 const CharSheet = (character) => {
   return (
     <div className="container">
       <div className="charInfo">
         <div className="col-4">
-          <h3 className="charName">{character.name}</h3>
-          <h3 className="userName">{character.user.name}</h3>
+          <h3 className="charName">{character.characterName}</h3>
+          <h3 className="userName">{character.madeBy}</h3>
         </div>
         <div className="col-4">
           <h3 className="charRace">{character.race}</h3>
-          <h3 className="charClass">{character.class}</h3>
+          <h3 className="charClass">{character.className}</h3>
         </div>
         <div className="col-4">
           <h3 className="charHP">{character.hitPoints}</h3>
-          <h3 className="charAlignment">{character.alignment}</h3>
+          {/* <h3 className="charAlignment">{character.alignment}</h3> */}
         </div>
       </div>
       <div className="row">
@@ -125,8 +126,9 @@ const CharSheet = (character) => {
 
           <div className="charHPNumbers col-4">
             <h3>Total Hit Points</h3>
+            <h3 className="charHP">{character.hitPoints}</h3>
 
-            <input type="number" id="totalHP"></input>
+            {/* <input type="number" id="totalHP"></input> */}
 
             <h3>Current Hit Points</h3>
 

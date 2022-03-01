@@ -9,13 +9,15 @@ import Searchbox from '../components/Searchbox';
 
 const CharSheetViewer = () => {
   return (
-    <div>
-      <form className="charSheet">
-        <header>
-          <section></section>
-        </header>
-      </form>
-    </div>
+
+    <CharSheet/>
+    // <div>
+    //   <form className="charSheet">
+    //     <header>
+    //       <section></section>
+    //     </header>
+    //   </form>
+    // </div>
   )
 }
 
