@@ -2,6 +2,7 @@ import React from "react";
 import getModifier from "./StatGenerator";
 import { generateScore, d6HP, d8HP, h10HP, d12HP, getHPTotal } from "../utils/abilityScore"
 import { QUERY_SINGLE_CHARACTER } from "../utils/queries";
+import Checkbox from "@mui/material";
 
 const CharSheet = (character) => {
   return (
@@ -119,6 +120,16 @@ const CharSheet = (character) => {
 
           <input type="number" id="charLevel" min="1" max="20"></input>
         </div>
+        <div className="speed">
+          <p>Walking</p>
+          <input type="number" placeholder="30"></input>
+        </div>
+        <div className="armorClass">
+          <h3>Armor<span><input type="number" placeholder="10"></input></span>Class</h3>
+        </div>
+        <div className="initiative">
+          <h2><input type="number" placeholder="0"></input></h2>
+        </div>
         <div className="col-4">
           <h2>Proficiency Bonus</h2>
 
@@ -128,7 +139,7 @@ const CharSheet = (character) => {
             <h3>Total Hit Points</h3>
             <h3 className="charHP">{character.hitPoints}</h3>
 
-            {/* <input type="number" id="totalHP"></input> */}
+            <input type="number" id="totalHP"></input>
 
             <h3>Current Hit Points</h3>
 
@@ -199,6 +210,187 @@ const CharSheet = (character) => {
               id="languages"
               placeholder="add languages here..."
             ></input>
+          </div>
+          <div className="container">
+            <div className="col-4">
+              <table className="table">
+              <tr>
+              <th>Proficient</th>
+              <th>Modifier</th>
+              <th>Skill</th>
+              <th>Bonus</th>
+            </tr>
+            <tr>
+              <td><Checkbox/></td>
+              <td>Dex
+              </td>
+              <td>
+                Acrobatics
+              </td>
+              <td>
+                <input type="number" value="0"></input>
+              </td>
+            </tr>
+            <tr>
+              <td><Checkbox/></td>
+              <td>Wis
+              </td>
+              <td>
+                Animal Handling
+              </td>
+              <td>
+                <input type="number" value="0"></input>
+              </td>
+            </tr>
+            <tr>
+              <td><Checkbox/></td>
+              <td>Int
+              </td>
+              <td>
+                Arcana
+              </td>
+              <td>
+                <input type="number" value="0"></input>
+              </td>
+              <td><Checkbox/></td>
+              <td>Str
+              </td>
+              <td>
+                Athletics
+              </td>
+              <td>
+                <input type="number" value="0"></input>
+              </td>
+              <td><Checkbox/></td>
+              <td>Cha
+              </td>
+              <td>
+                Deception
+              </td>
+              <td>
+                <input type="number" value="0"></input>
+              </td>
+              <td><Checkbox/></td>
+              <td>Int
+              </td>
+              <td>
+                History
+              </td>
+              <td>
+                <input type="number" value="0"></input>
+              </td>
+              <td><Checkbox/></td>
+              <td>Wis
+              </td>
+              <td>
+                Insight
+              </td>
+              <td>
+                <input type="number" value="0"></input>
+              </td>
+            </tr>
+            <td><Checkbox/></td>
+              <td>Cha
+              </td>
+              <td>
+                Intimidation
+              </td>
+              <td>
+                <input type="number" value="0"></input>
+              </td>
+              <td><Checkbox/></td>
+              <td>Int
+              </td>
+              <td>
+                Investigation
+              </td>
+              <td>
+                <input type="number" value="0"></input>
+              </td>
+              <td><Checkbox/></td>
+              <td>Wis
+              </td>
+              <td>
+                Medicine
+              </td>
+              <td>
+                <input type="number" value="0"></input>
+              </td>
+              <td><Checkbox/></td>
+              <td>Int
+              </td>
+              <td>
+                Nature
+              </td>
+              <td>
+                <input type="number" value="0"></input>
+              </td>
+              <td><Checkbox/></td>
+              <td>Wis
+              </td>
+              <td>
+                Perception
+              </td>
+              <td>
+                <input type="number" value="0"></input>
+              </td>
+              <td><Checkbox/></td>
+              <td>Cha
+              </td>
+              <td>
+                Performance
+              </td>
+              <td>
+                <input type="number" value="0"></input>
+              </td>
+              <td><Checkbox/></td>
+              <td>Cha
+              </td>
+              <td>
+                Persuasion
+              </td>
+              <td>
+                <input type="number" value="0"></input>
+              </td>
+              <td><Checkbox/></td>
+              <td>Int
+              </td>
+              <td>
+                Religion
+              </td>
+              <td>
+                <input type="number" value="0"></input>
+              </td>
+              <td><Checkbox/></td>
+              <td>Dex
+              </td>
+              <td>
+                Sleight of Hand
+              </td>
+              <td>
+                <input type="number" value="0"></input>
+              </td>
+              <td><Checkbox/></td>
+              <td>Dex
+              </td>
+              <td>
+                Stealth
+              </td>
+              <td>
+                <input type="number" value="0"></input>
+              </td>
+              <td><Checkbox/></td>
+              <td>Wis
+              </td>
+              <td>
+                Survival
+              </td>
+              <td>
+                <input type="number" value="0"></input>
+              </td>
+
+              </table>
+            </div>
           </div>
         </div>
       </div>
