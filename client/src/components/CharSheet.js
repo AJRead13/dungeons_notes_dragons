@@ -42,8 +42,8 @@ export default CharSheet;
       <h3 className="charClass">{character.class}</h3>
     </div>
     <div className="col-4">
-      <h3 className="charName">{character.hitPoints}</h3>
-      {/* <h3 className="userName">{character.user.name}</h3> */}
+      <h3 className="charHP">{character.hitPoints}</h3>
+      <h3 className="charAlignment">{character.alignment}</h3>
     </div>
   </div>
   <div className="row">
