@@ -1,8 +1,11 @@
-import React from 'react';
+import React, {useState} from 'react';
+// search for characters by name
+
 const Searchbox = () => {
+  const [searchInput, setSearchInput] = useState();
   return (
     <>
-
+      
     </>
   )
 }

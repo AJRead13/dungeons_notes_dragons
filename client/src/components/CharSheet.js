@@ -1,6 +1,15 @@
 import React from "react";
+import { QUERY_SINGLE_CHARACTER } from "../utils/queries";
+import { useQuery } from "@apollo/client";
+
 
 const CharSheet = (character) => {
+  const { loading, data, error } = useQuery(QUERY_SINGLE_CHARACTER, {
+		fetchPolicy: "no-cache",
+	});
+  	const characterData = data?.character || [];
+
+
   return <div className="container">
   <div className="charInfo">
     <div className="col-4">
