@@ -3,8 +3,12 @@ import React from "react";
 import { QUERY_SINGLE_CHARACTER } from "../utils/queries";
 import { Checkbox } from "@mui/material";
 import { library } from '@fortawesome/fontawesome-svg-core'
-import { fab } from "@fortawesome/free-solid-svg-icons"
+import { faArrows } from "@fortawesome/free-solid-svg-icons"
 import { FontAwesomeIcon} from "@fortawesome/react-fontawesome"
+
+library.add(
+  faArrows,
+);
 
 const CharSheet = (character) => {
   return (
@@ -27,7 +31,7 @@ const CharSheet = (character) => {
         <div className="col-4">
           <table className="table">
             <tr>
-              <th>Ability<FontAwesomeIcon icon="fa-regular fa-axe-battle" /></th>
+              <th>Ability</th>
               <th>Score</th>
               <th>Modifier</th>
             </tr>
@@ -118,7 +122,7 @@ const CharSheet = (character) => {
           </table>
         </div>
         <div className="col-4">
-          <h2>Player Level</h2>
+          <h2>Player Level <FontAwesomeIcon icon="fa-regular fa-arrows" /> </h2>
 
           <input type="number" id="charLevel" min="1" max="20"></input>
         </div>
