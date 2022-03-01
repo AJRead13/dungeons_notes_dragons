@@ -2,6 +2,9 @@ import React from "react";
 // import { generateScore, d6HP, d8HP, h10HP, d12HP, getHPTotal, getModifier } from "../utils/abilityScore"
 import { QUERY_SINGLE_CHARACTER } from "../utils/queries";
 import { Checkbox } from "@mui/material";
+import { library } from '@fortawesome/fontawesome-svg-core'
+import { faHome } from "@fortawesome/free-solid-svg-icons"
+import { FontAwesomeIcon} from "@fortawesome/react-fontawesome"
 
 const CharSheet = (character) => {
   return (
@@ -127,7 +130,7 @@ const CharSheet = (character) => {
           <h3>Armor<span><input type="number" placeholder="10"></input></span>Class</h3>
         </div>
         <div className="initiative">
-          <h2><input type="number" placeholder="0"></input></h2>
+          <h2>Initiative<input type="number" placeholder="0"></input></h2>
         </div>
         <div className="col-4">
           <h2>Proficiency Bonus</h2>
