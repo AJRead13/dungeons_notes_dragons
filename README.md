@@ -13,6 +13,8 @@
 ## Usage
         - In the browser @ https://morning-hollows-59577.herokuapp.com/
 ## Screenshot
+![Screenshot](client/public/images/dndIconSmall.png)
+![Screenshot]()
 
 ## Credits
         - Tina Stanczyk, Maximilian Stump, Rich Kaplan
