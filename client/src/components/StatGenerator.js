@@ -1,4 +1,4 @@
-import CharSheet from "./CharSheet";
+// import CharSheet from "./CharSheet";
 
 
 
@@ -17,10 +17,4 @@ const getModifier = () => {
     document.getElementById("chaMod").value = Math.floor((chaScore - 10)/2);
 }
 
-
-
-
-
-
-
-export default getModifier
+export default getModifier;
