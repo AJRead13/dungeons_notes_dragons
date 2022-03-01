@@ -11,13 +11,7 @@ const CharSheetViewer = () => {
   return (
 
     <CharSheet/>
-    // <div>
-    //   <form className="charSheet">
-    //     <header>
-    //       <section></section>
-    //     </header>
-    //   </form>
-    // </div>
+  
   )
 }
 
