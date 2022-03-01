@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import {Link} from 'react-router-dom';
 import { useQuery } from "@apollo/client";
-import { GET_ME } from "../utils/queries";
+import { QUERY_CHARACTERS } from "../utils/queries";
 import { Button, Dialog } from '@mui/material';
 import { getRaceInfo, getClassInfo } from "../utils/API";
 
@@ -11,7 +11,7 @@ import CharCreate from '../components/CharCreate'
 
 
 const Home = () => {
-	const { loading, data, error } = useQuery(GET_ME, {
+	const { loading, data, error } = useQuery(QUERY_CHARACTERS, {
 		fetchPolicy: "no-cache",
 	});
 
@@ -37,7 +37,7 @@ const Home = () => {
 							return (
 								<li key={character._id}>
 									<Link to={{ pathname: `/character/${character._id}` }}>
-										{character.character}
+										{character.characterName}
 									</Link>
 								</li>
 							);
