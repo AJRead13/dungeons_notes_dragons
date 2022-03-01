@@ -12,7 +12,7 @@ const resolvers = {
     },
     characters: async (parent, { username }) => {
       const params = username ? { username } : {};
-      return Character.find(params).populate('notes');
+      return Character.find(params);
     },
     character: async (parent, { characterId }) => {
       return Character.findOne({ _id: characterId }).populate('notes');
