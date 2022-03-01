@@ -31,6 +31,16 @@ function getModifier(finalScore) {
   return Math.floor((finalScore - 10) / 2);
 }
 
+//calculating hp modifier
+
+// function getHPTotal() {
+//   let hitPoints = `${classHitDie} * ${characterlevel}` + `${conMod} * ${characterLevel}`;
+//   return hitPoints; 
+// }
+
+
+//below is hitpoint rolls for leveling up
+
 function d6HP() {
   let d6 = Math.floor((Math.random() * 6) + 1);
   return d6;
