@@ -2,7 +2,7 @@ import CharSheet from "./CharSheet";
 
 
 
-function getModifier() {
+const getModifier = () => {
     let strScore = document.getElementById("strScore").value;
     document.getElementById("strMod").value = Math.floor((strScore - 10)/2);
     let dexScore = document.getElementById("dexScore").value;
@@ -23,4 +23,4 @@ function getModifier() {
 
 
 
-module.exports = {getModifier}
+export default getModifier
