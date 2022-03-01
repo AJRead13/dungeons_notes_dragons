@@ -3,7 +3,7 @@ import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import { ApolloClient, ApolloProvider, InMemoryCache, createHttpLink } from '@apollo/client';
 import { setContext } from '@apollo/client/link/context';
 import Home from './pages/Home';
-import Profile from './pages/Profile';
+import Profile from './pages/Profile.js';
 import CharSheetViewer from './pages/CharSheetViewer';
 import NotFound from './pages/NotFound';
 
