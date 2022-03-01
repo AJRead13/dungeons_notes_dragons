@@ -6,8 +6,10 @@ import { GET_ME, QUERY_CHARACTERS } from '../utils/queries';
 import { ADD_CHARACTER } from '../utils/mutations';
 import Auth from '../utils/auth';
 import { generateScore } from '../utils/abilityScore';
+import { useHistory } from 'react-router';
 
 const CharForm = () => {
+  const history = useHistory();
   const [showModal, setShowModal] = useState(false);
   const [charFormData, setCharFormData] = useState({ characterName: '', race: '', className: '', hitPoints: 0, strength: 0, dexterity: 0, constitution: 0, intelligence: 0, wisdom: 0, charisma: 0 });
   const stats = [{stat: "strength", score: 0}, {stat: "dexterity", score: 0}, {stat: "constitution", score: 0}, {stat: "intelligence", score: 0}, {stat: "wisdom", score: 0}, {stat: "charisma", score: 0}];
@@ -23,6 +25,7 @@ const CharForm = () => {
 
 
   const handleFormSubmit = async (event) => {
+    history.go(0);
     setShowModal(false);
     event.preventDefault();
 
