@@ -16,6 +16,7 @@ const CharSheetViewer = () => {
 		fetchPolicy: "no-cache",
 	});
   const character = data?.character || {};
+  
   return (
     <div>
       {error && (     

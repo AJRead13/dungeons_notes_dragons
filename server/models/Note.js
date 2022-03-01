@@ -11,10 +11,10 @@ const noteSchema = new Schema({
 	timestamp: {
 		type: Date,
 		default: Date.now,
-		get: (timestamp) => dateFormat(timestamp),
+		get: (timestamp) => timestamp.toString(),
 	},
 });
 // const Note = model("Note", noteSchema);
 
-    module.exports = noteSchema;
+module.exports = noteSchema;
   
