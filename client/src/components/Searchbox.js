@@ -1,6 +1,7 @@
 import React, {useState} from 'react';
 import {QUERY_RACE} from '../utils/queries';
 import { Button, Container, Box, TextField, NativeSelect } from "@mui/material";
+import Auth from '../utils/auth';
 
 // search for characters by name
 import {getRaceInfo, getClassInfo} from '../utils/API';
@@ -82,16 +83,16 @@ const Searchbox = () => {
   
   return (
 		<>
-		<Box>
-			<h1>Search for {searchType}!</h1>
+		<Box sx={{display:'block'}}>
+			{/* <h4>Search for {searchType}!</h4> */}
 			<NativeSelect defaultValue= {"Select"} 
 				// inputProps:{{
 				// name: searchType
-
+				sx={{width: '100%'}}
 				// }}
 				onChange={(e) => setSearchType(e.target.value)}>
-					<option value={"race"}></option>
-					<option value={"class"}></option>
+					<option value={"race"}>race</option>
+					<option value={"class"}>class</option>
 			</NativeSelect>
 			<TextField
 				id="search"
@@ -101,6 +102,7 @@ const Searchbox = () => {
 				value={searchInput}
 				onChange={(e) => setSearchInput(e.target.value)}
 				variant="standard"
+				sx={{width: '100%'}}
 			/>
 			<Button
 				type="submit"
@@ -111,15 +113,15 @@ const Searchbox = () => {
 			</Button>
 		</Box>
 		<Container>
-			<h2>
+			{/* <h5>
 				{searched.length
 					? `Viewing ${searched.length} results:`
 					: "Search for a race/class to begin"}
-			</h2>
+			</h5> */}
 			<div>
 				{searched.map((search) => {
 					return (
-					<h2>searched.name</h2>
+					<h2>${search.name}</h2>
 					)}
 
 				)}
