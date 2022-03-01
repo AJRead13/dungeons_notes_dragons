@@ -105,6 +105,10 @@ const CharSheet = (character) => {
         <input type="number" id="temporaryHP" placeholder="0"></input>
         </br>
       </div>
+      <div className="container">
+        <h3>Armor</h3>
+        <input type="text" id="armorTypes" placeholder="add armor proficiencies here..."></input>
+      </div>
     </div>
   </div>
 </div>;
