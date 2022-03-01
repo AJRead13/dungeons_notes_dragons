@@ -7,7 +7,8 @@ import { getRaceInfo, getClassInfo } from "../utils/API";
 
 import CharSheet from '../components/CharSheet';
 import Searchbox from '../components/Searchbox';
-import CharCreate from '../components/CharCreate'
+import CharCreate from '../components/CharCreate';
+import Auth from '../utils/auth';
 
 
 const Home = () => {
@@ -45,7 +46,12 @@ const Home = () => {
 					</ul>
 				)}
 			</div>
+			{Auth.loggedIn() ? (
       <CharCreate />
+			) : (
+			<div>
+			</div>
+			)}
 		</div>
 	);
 };
