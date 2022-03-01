@@ -12,7 +12,6 @@ const SignupForm = () => {
   const [showPassword, setShowPassword] = useState(false);
   const [addUser, { error, data }] = useMutation(ADD_USER);
 
- 
   const handleInputChange = (event) => {
     const { name, value } = event.target;
     setUserFormData({ ...userFormData, [name]: value });
@@ -30,15 +29,12 @@ const SignupForm = () => {
     event.preventDefault();
 
     const input = event.currentTarget;
+    console.log(input);
     if (input.checkValidity() === false) {
       event.preventDefault();
       event.stopPropagation();
     }
-
     try {
-      // const { token, user } = await addUser(userFormData);
-      // console.log(user);
-      // Auth.login(token);
       const { data } = await addUser({
         variables: { ...userFormData },
       })
