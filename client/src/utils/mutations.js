@@ -94,6 +94,31 @@ export const DELETE_CHARACTER = gql`
   }
 `;
 
+export const UPDATE_CHARACTER = gql`
+mutation updateCharacter($characterId: ID!, $characterToUpdate: CharacterInput) {
+  updateCharacter(characterId: $characterId, characterToUpdate: $characterToUpdate) {
+    _id
+    characterName
+    race
+    className
+    hitPoints
+    strength
+    dexterity
+    constitution
+    intelligence
+    wisdom
+    charisma
+    notes {
+      _id
+      title
+      text
+      timestamp
+    }
+    madeBy
+  }
+}
+`;
+
 export const ADD_NOTE = gql`
   mutation addNote(
     $characterId: ID!

@@ -25,7 +25,30 @@ const typeDefs = gql`
 		madeBy: String
 	}
 
+	input CharacterInput {
+		_id: ID!
+		characterName: String
+		race: String
+		className: String
+		hitPoints: Int
+		strength: Int
+		dexterity: Int
+		constitution: Int
+		intelligence: Int
+		wisdom: Int
+		charisma: Int
+		notes: [NoteInput]
+		madeBy: String
+	}
+
 	type Note {
+		_id: ID!
+		title: String
+		text: String
+		timestamp: String
+	}
+
+	input NoteInput {
 		_id: ID!
 		title: String
 		text: String
@@ -47,6 +70,7 @@ const typeDefs = gql`
     login(email: String!, password: String!): Auth
     addCharacter(characterName: String, race: String, className: String, hitPoints: Int, strength: Int, dexterity: Int, constitution: Int, intelligence: Int, wisdom: Int, charisma: Int): Character
     deleteCharacter(charToDelete: ID!): User
+		updateCharacter(characterId: ID!, characterToUpdate: CharacterInput): Character
     addNote(characterId: ID!, title: String, text: String, timestamp: String): Note
     deleteNote(characterId: ID!, noteId: ID!): Note
   }

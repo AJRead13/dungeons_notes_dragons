@@ -1,18 +1,15 @@
 import React, { useState } from 'react';
-import { Alert, AlertTitle, Box, Button, IconButton, TextField, InputLabel, NativeSelect, Input, Dialog, DialogContent, DialogTitle } from '@mui/material';
-import { SettingsPhoneTwoTone, Visibility, VisibilityOff } from '@mui/icons-material';
-import { useMutation, useQuery } from '@apollo/client';
-import { GET_ME, QUERY_CHARACTERS } from '../utils/queries';
+import { Alert, AlertTitle, Button, TextField, InputLabel, NativeSelect, Dialog, DialogContent, DialogTitle } from '@mui/material';
+import { useMutation } from '@apollo/client';
 import { ADD_CHARACTER } from '../utils/mutations';
 import Auth from '../utils/auth';
-import { generateScore } from '../utils/abilityScore';
 import { useHistory } from 'react-router';
 
 const CharForm = () => {
   const history = useHistory();
   const [showModal, setShowModal] = useState(false);
   const [charFormData, setCharFormData] = useState({ characterName: '', race: '', className: '', hitPoints: 0, strength: 0, dexterity: 0, constitution: 0, intelligence: 0, wisdom: 0, charisma: 0 });
-  const stats = [{stat: "strength", score: 0}, {stat: "dexterity", score: 0}, {stat: "constitution", score: 0}, {stat: "intelligence", score: 0}, {stat: "wisdom", score: 0}, {stat: "charisma", score: 0}];
+  
   const raceList = ["human", "elf", "dwarf", "gnome", "dragonborn", "half-elf", "halfling", "half-orc", "tiefling"];
   const classList = ["barbarian", "bard", "cleric", "druid", "fighter", "monk", "paladin", "ranger", "rogue", "sorcerer", "warlock", "wizard"]
 
@@ -23,9 +20,8 @@ const CharForm = () => {
     setCharFormData({ ...charFormData, [name]: value });
   };
 
-
   const handleFormSubmit = async (event) => {
-    history.go(0);
+    // history.go(0);
     setShowModal(false);
     event.preventDefault();
 
@@ -42,21 +38,17 @@ const CharForm = () => {
           madeBy: Auth.getProfile().data.username,
         },
       });
+<<<<<<< HEAD
+      console.log({data});
+      setCharFormData({ characterName: '', className: '', hitPoints: 0, strength: 0, dexterity: 0, constitution: 0, intelligence: 0, wisdom: 0, charisma: 0 });
+=======
 
       setCharFormData({ characterName: '', race: '', className: '', hitPoints: 10, strength: 0, dexterity: 0, constitution: 0, intelligence: 0, wisdom: 0, charisma: 0 });
+>>>>>>> fd4a3ad4d3d7d2deb6a28e02a89bdabc0d08b497
     } catch (err) {
       console.error(JSON.parse(JSON.stringify(err)));
     }
   };
-
-  const handleStats = async (event) => {
-    event.preventDefault();
-  
-    for(let i=0; i<stats.length; i++){
-      stats[i].score = generateScore();
-    }
-    return stats;
-  }
 
   return (
     <>

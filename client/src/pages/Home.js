@@ -2,11 +2,7 @@ import React, { useState } from 'react';
 import {Link} from 'react-router-dom';
 import { useQuery } from "@apollo/client";
 import { QUERY_CHARACTERS } from "../utils/queries";
-import { Button, Dialog, List, ListItemButton, Card, CardContent } from '@mui/material';
-import { getRaceInfo, getClassInfo } from "../utils/API";
-
-import CharSheet from '../components/CharSheet';
-import Searchbox from '../components/Searchbox';
+import { List, ListItemButton, Card, CardContent } from '@mui/material';
 import CharCreate from '../components/CharCreate';
 import Auth from '../utils/auth';
 
@@ -17,7 +13,6 @@ const Home = () => {
 	});
 
 	const characterList = data?.characters || [];
-  const [showModal, setShowModal] = useState(false);
 
 	if(error){
 		console.log(JSON.parse(JSON.stringify(error)));

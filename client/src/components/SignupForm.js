@@ -29,7 +29,7 @@ const SignupForm = () => {
     event.preventDefault();
 
     const input = event.currentTarget;
-    console.log(input);
+
     if (input.checkValidity() === false) {
       event.preventDefault();
       event.stopPropagation();
