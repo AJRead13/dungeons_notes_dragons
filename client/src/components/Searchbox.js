@@ -108,7 +108,7 @@ const Searchbox = () => {
 				type="submit"
 				variant="success"
 				size="lg"
-				onclick={handleFormSubmit}
+				onClick={handleFormSubmit}
 			>Submit Search
 			</Button>
 		</Box>
