@@ -5,6 +5,7 @@ import Auth from '../utils/auth';
 import { Link } from 'react-router-dom'
 import CharSheet from '../components/CharSheet';
 import Searchbox from '../components/Searchbox';
+import {QUERY_SINGLE_CHARACTER} from '../utils/queries';
 
 
 const CharSheetViewer = () => {
