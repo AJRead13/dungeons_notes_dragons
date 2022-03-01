@@ -107,4 +107,4 @@ const getModifier = () => {
 
 
 
-export default  { generateScore, d6HP, d8HP, d10HP, d12HP, getHPTotal, getModifier };
+// export default  { generateScore, d6HP, d8HP, d10HP, d12HP, getHPTotal, getModifier };

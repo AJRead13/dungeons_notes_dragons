@@ -1,7 +1,7 @@
 import React from "react";
-import { generateScore, d6HP, d8HP, h10HP, d12HP, getHPTotal, getModifier } from "../utils/abilityScore"
+// import { generateScore, d6HP, d8HP, h10HP, d12HP, getHPTotal, getModifier } from "../utils/abilityScore"
 import { QUERY_SINGLE_CHARACTER } from "../utils/queries";
-import Checkbox from "@mui/material";
+import { Checkbox } from "@mui/material";
 
 const CharSheet = (character) => {
   return (
