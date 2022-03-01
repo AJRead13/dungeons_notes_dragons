@@ -1,17 +1,61 @@
 import React, { useState } from "react";
-import { Grid, TextField } from '@mui/material';
-import { TextFieldsOutlined } from "@mui/icons-material";
+import { Button, Grid, IconButton, TextField } from '@mui/material';
+import { AddIcon, RemoveIcon } from "@mui/icons-material";
+import { ADD_NOTE, DELETE_NOTE } from '../utils/mutations';
+import { __Field } from "graphql";
 
 const getModifier = score => Math.floor((score - 10)/2);
 
 const CharSheet = (character) => {
   const char = character?.character || {};
-  const [charData, setCharData] = useState({ characterName: char.characterName, race: char.race, className: char.className, hitPoints: char.hitPoints, strength: char.strength, dexterity: char.dexterity, constitution: char.constitution, intelligence: char.intelligence, wisdom: char.wisdom, charisma: char.charisma, level: 1 });
- 
+  const [charData, setCharData] = useState({...char, level: 1});
+  const [noteData, setNoteData] = useState({title: '', text: '', timestamp: ''});
+  const [showCreateNote, setShowCreateNote] = useState(false);
+  const [addNote, { addError }] = useMutation(ADD_NOTE);
+  const [deleteNote, { deleteError }] = useMutation(DELETE_NOTE);
+
   const handleInputChange = (event) => {
     const { name, value } = event.target;
     setCharData({ ...charData, [name]: value });
   };
+
+  const openCreate = () => {
+    setShowCreateNote(true);
+  }
+
+  const handleNoteChange = (event) => {
+    const { name, value } = event.target;
+    setNoteData({...noteData, [name]: value});
+  }
+
+  const submitNote = async (event) => {
+    event.preventDefault();
+
+    const newNote = {
+      title: noteData.title,
+      text: noteData.text,
+      timestamp: Date.now()
+    }
+
+    try {
+      await addNote({variables: {characterId: charData._id, ...newNote}});
+      setShowCreateNote(false);
+      setCharData({...charData, notes: [...charData.notes, newNote]});
+    } catch (err) {
+      console.log(JSON.parse(JSON.stringify(err)));
+    }
+  }
+
+  const deleteNote = async (event, noteId) => {
+    event.preventDefault();
+
+    try {
+      await deleteNote({variables: { characterId: charData._id, noteId: noteId}});
+      setCharData({...charData, notes: charData.notes.filter((note) => note._id !== noteId)});
+    } catch (err) {
+      console.log(JSON.parse(JSON.stringify(err)));
+    }
+  }
 
   return (
     <Grid container rowSpacing={2} spacing={2}>
@@ -103,6 +147,36 @@ const CharSheet = (character) => {
         <h3>Proficiency Bonus</h3>
         <br/>
         <TextField type="number" id="profBonus" value={Math.ceil((charData.level/4) + 1)}></TextField>
+      </Grid>
+
+      <Grid item xs={12}>
+        <h3>Notes <IconButton onClick={openCreate}><AddIcon/></IconButton></h3>
+        {addError && (
+          <Alert severity="error" onClose={() => {}}>
+            <AlertTitle>Error</AlertTitle>
+            An error occured while trying to add the note.
+          </Alert>
+        )}
+        {deleteError && (
+          <Alert severity="error" onClose={() => {}}>
+            <AlertTitle>Error</AlertTitle>
+            An error occured while trying to delete the note.
+          </Alert>
+        )}
+        {showCreateNote && (
+          <div id="createNote">
+            <TextField name="title" placeholder="Title" onClick={handleNoteChange}></TextField>
+            <TextField multiline name="text" onClick={handleNoteChange}></TextField>
+            <Button onClick={submitNote}>Submit</Button>
+          </div>
+        )}
+        {charData.notes.map((note) => {
+        <div class="note">
+          <h4>{note.title} <IconButton onClick={(event) => deleteNote(event, note._id)}><RemoveIcon/></IconButton></h4>
+          <h5>{note.timestamp}</h5>
+          <p>{note.text}</p>
+        </div>
+        })}
       </Grid>
     </Grid>
   );
