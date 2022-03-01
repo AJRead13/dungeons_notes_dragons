@@ -30,7 +30,7 @@ const Navbar = () => {
       <AppBar position="static">
         <Container maxWidth="xl">
           <Toolbar disableGutters>
-          <Link to="/">Dungeons, Notes, Dragons</Link>
+          <Link style = {{color: "black"}} to="/">Dungeons, Notes, Dragons</Link>
           {Auth.loggedIn() ? (
             <>
               <IconButton

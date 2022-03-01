@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
-import { Alert, AlertTitle, Box, Button, IconButton, TextField, InputLabel, NativeSelect, Input } from '@mui/material';
-import { Visibility, VisibilityOff } from '@mui/icons-material';
+import { Alert, AlertTitle, Box, Button, IconButton, TextField, InputLabel, NativeSelect, Input, Dialog, DialogContent, DialogTitle } from '@mui/material';
+import { SettingsPhoneTwoTone, Visibility, VisibilityOff } from '@mui/icons-material';
 import { useMutation, useQuery } from '@apollo/client';
 import { GET_ME, QUERY_CHARACTERS } from '../utils/queries';
 import { ADD_CHARACTER } from '../utils/mutations';
@@ -8,6 +8,7 @@ import Auth from '../utils/auth';
 import { generateScore } from '../utils/abilityScore';
 
 const CharForm = () => {
+  const [showModal, setShowModal] = useState(false);
   const [charFormData, setCharFormData] = useState({ characterName: '', race: '', className: '', hitPoints: 0, strength: 0, dexterity: 0, constitution: 0, intelligence: 0, wisdom: 0, charisma: 0 });
   const stats = [{stat: "strength", score: 0}, {stat: "dexterity", score: 0}, {stat: "constitution", score: 0}, {stat: "intelligence", score: 0}, {stat: "wisdom", score: 0}, {stat: "charisma", score: 0}];
   const raceList = ["human", "elf", "dwarf", "gnome", "dragonborn", "half-elf", "halfling", "half-orc", "tiefling"];
@@ -18,10 +19,11 @@ const CharForm = () => {
   const handleInputChange = (event) => {
     const { name, value } = event.target;
     setCharFormData({ ...charFormData, [name]: value });
-    console.log(charFormData)
   };
 
+
   const handleFormSubmit = async (event) => {
+    setShowModal(false);
     event.preventDefault();
 
     const token = Auth.loggedIn() ? Auth.getToken() : null;
@@ -29,7 +31,7 @@ const CharForm = () => {
     if (!token) {
       return false;
     }
-    console.log(charFormData);
+    
     try {
       const { data } = await addCharacter({
         variables: {
@@ -61,7 +63,18 @@ const CharForm = () => {
         Something went wrong with adding a character!
       </Alert>
     )}
-    <Box>
+    <div className="card-footer text-center m-3">
+				<h2>Create a new character:</h2>
+					<Button className="btn btn-lg btn-danger" onClick={() => setShowModal(true)}>Create</Button>
+		</div>
+    <Dialog
+        open={showModal}
+        onClose={() => setShowModal(false)}
+      >
+        <DialogTitle>
+          Create a Character:
+        </DialogTitle>
+    <DialogContent>
       <TextField
         required
         id="new-characterName"
@@ -100,9 +113,9 @@ const CharForm = () => {
       {classList.map((charClass) => <option key={charClass} value={charClass}>{charClass}</option>)}
       </NativeSelect>
       
-      {/* <Button variant="contained" onClick={handleStats}>Generate Stats</Button> */}
-      <Button variant="contained" onClick={handleFormSubmit}>Create</Button>
-    </Box>
+    </DialogContent>
+    <Button variant="contained" onClick={handleFormSubmit} >Create</Button>
+    </Dialog>
   </>
   ); 
 }
