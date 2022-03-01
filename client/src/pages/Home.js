@@ -45,16 +45,7 @@ const Home = () => {
 					</ul>
 				)}
 			</div>
-			<div className="card-footer text-center m-3">
-				<h2>Create a new character:</h2>
-					<Button className="btn btn-lg btn-danger" onClick={() => setShowModal(true)}>Create</Button>
-			</div>
-      <Dialog
-        open={showModal}
-        onClose={() => setShowModal(false)}
-      >
-        <CharCreate />
-      </Dialog>
+      <CharCreate />
 		</div>
 	);
 };
