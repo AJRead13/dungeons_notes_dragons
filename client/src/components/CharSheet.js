@@ -203,7 +203,7 @@ const CharSheet = ({character}) => {
             </div>
           )}
           {charData.notes.map((note) => 
-            <div class="note">
+            <div key={note._id} className="note">
               <h4>{note.title} <IconButton onClick={() => removeNote(note._id)}><Remove/></IconButton></h4>
               <h5>{note.timestamp}</h5>
               <p>{note.text}</p>

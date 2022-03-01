@@ -131,7 +131,7 @@ const resolvers = {
       if (context.user) {
         const updatedCharacter = await Character.findOneAndUpdate(
           { _id: characterId },
-          { $pull: { notes: { noteId: noteToDelete } } },
+          { $pull: { notes: { _id: noteToDelete } } },
           { new: true }
         );
 
