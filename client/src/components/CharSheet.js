@@ -21,8 +21,8 @@ let warlockHp = 8;
 let wizardHp = 6;
 
 const getHpTotal = () => {
-  const char = character?.character;
-  const [charData, setCharData] = useState({...char, level: 1});
+  // const char = character?.character;
+  // const [charData, setCharData] = useState({...char, level: 1});
   
   if (charData.race == barbarian) {
     charData.hitPoints = barbarianHp + getModifier(charData.constitution)
