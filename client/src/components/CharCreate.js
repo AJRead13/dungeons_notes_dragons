@@ -38,13 +38,12 @@ const CharForm = () => {
           madeBy: Auth.getProfile().data.username,
         },
       });
-<<<<<<< HEAD
-      console.log({data});
-      setCharFormData({ characterName: '', className: '', hitPoints: 0, strength: 0, dexterity: 0, constitution: 0, intelligence: 0, wisdom: 0, charisma: 0 });
-=======
 
+      console.log({data});
       setCharFormData({ characterName: '', race: '', className: '', hitPoints: 10, strength: 0, dexterity: 0, constitution: 0, intelligence: 0, wisdom: 0, charisma: 0 });
->>>>>>> fd4a3ad4d3d7d2deb6a28e02a89bdabc0d08b497
+
+      history.go(0);
+
     } catch (err) {
       console.error(JSON.parse(JSON.stringify(err)));
     }

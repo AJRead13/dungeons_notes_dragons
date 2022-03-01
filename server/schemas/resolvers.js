@@ -1,5 +1,5 @@
 const { AuthenticationError } = require('apollo-server-express');
-const { User, Character, Note } = require('../models');
+const { User, Character } = require('../models');
 const { signToken } = require('../utils/auth');
 
 const resolvers = {
@@ -67,6 +67,7 @@ const resolvers = {
           intelligence,
           wisdom,
           charisma,
+          notes: [],
           madeBy: context.user.username
         });
 
@@ -117,33 +118,28 @@ const resolvers = {
     },
     addNote: async (parent, { characterId, title, text, timestamp }, context) => {
       if (context.user) {
-        const note = await Note.create({
-          title,
-          text,
-          timestamp
-        });
-
-        await Character.findOneAndUpdate(
+        const updatedCharacter = await Character.findOneAndUpdate(
           { _id: characterId },
-          { $addToSet: { notes: note._id } }
+          { $addToSet: { notes: {title: title, text: text} }},
+          {
+            returnNewDocument: true
+          }
         );
-
-        return note;
+        return updatedCharacter;
       }
       throw new AuthenticationError('You need to be logged in!');
     },
     deleteNote: async (parent, { characterId, noteId }, context) => {
       if (context.user) {
-        const note = await Note.findOneAndDelete({
-          _id: noteId,
-        });
-
-        await Character.findOneAndUpdate(
+        const updatedCharacter = await Character.findOneAndUpdate(
           { _id: characterId },
-          { $pull: { notes: note._id } }
+          { $pull: { notes: { _id: noteId } } },
+          {
+            returnNewDocument: true
+          }
         );
 
-        return note;
+        return updatedCharacter;
       }
       throw new AuthenticationError('You need to be logged in!');
     },

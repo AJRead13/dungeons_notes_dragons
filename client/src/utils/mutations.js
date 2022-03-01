@@ -124,13 +124,11 @@ export const ADD_NOTE = gql`
     $characterId: ID!
     $title: String
     $text: String
-    $timestamp: String
   ) {
     addNote(
       characterId: $characterId
       title: $title
       text: $text
-      timestamp: $timestamp
     ) {
       _id
       title

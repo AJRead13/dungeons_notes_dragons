@@ -1,7 +1,10 @@
 import React, { useState } from "react";
 import { Alert, AlertTitle, Button, Grid, IconButton, TextField } from '@mui/material';
-// import { AddIcon, RemoveIcon } from "@mui/icons-material";
 import { ADD_NOTE, DELETE_NOTE, UPDATE_CHARACTER } from '../utils/mutations';
+import { useHistory } from "react-router";
+import { Add, Remove } from "@mui/icons-material";
+import { useMutation } from "@apollo/client";
+import { ADD_NOTE, DELETE_NOTE } from '../utils/mutations';
 import { __Field } from "graphql";
 import { useMutation, useQuery } from '@apollo/client';
 import Auth from '../utils/auth';
@@ -10,7 +13,7 @@ const getModifier = score => Math.floor((score - 10)/2);
 
 const CharSheet = ({character}) => {
   const [charData, setCharData] = useState({...character});
-  const [noteData, setNoteData] = useState({title: '', text: '', timestamp: ''});
+  const [noteData, setNoteData] = useState({title: '', text: '' });
   const [showCreateNote, setShowCreateNote] = useState(false);
   const [addNote, { addError }] = useMutation(ADD_NOTE);
   const [deleteNote, { deleteError }] = useMutation(DELETE_NOTE);
@@ -59,32 +62,29 @@ const CharSheet = ({character}) => {
 
   const submitNote = async (event) => {
     event.preventDefault();
-
-    const newNote = {
-      title: noteData.title,
-      text: noteData.text,
-      timestamp: Date.now()
-    }
-
+   
     try {
-      await addNote({variables: {characterId: charData._id, ...newNote}});
+      const { data } = await addNote({variables: {characterId: charData._id, title: noteData.title, text: noteData.text}});
+      console.log(data);
       setShowCreateNote(false);
-      setCharData({...charData, notes: [...charData.notes, newNote]});
+      setNoteData({title:'', text:''});
+      setCharData({...charData, data});
+      history.push(0)
     } catch (err) {
       console.log(JSON.parse(JSON.stringify(err)));
     }
   }
 
-  // const deleteNote = async (event, noteId) => {
-  //   event.preventDefault();
+  const removeNote = async (event, noteId) => {
+    event.preventDefault();
 
-  //   try {
-  //     await deleteNote({variables: { characterId: charData._id, noteId: noteId}});
-  //     setCharData({...charData, notes: charData.notes.filter((note) => note._id !== noteId)});
-  //   } catch (err) {
-  //     console.log(JSON.parse(JSON.stringify(err)));
-  //   }
-  // }
+    try {
+      await deleteNote({variables: { characterId: charData._id, noteId: noteId}});
+      setCharData({...charData, notes: charData.notes.filter((note) => note._id !== noteId)});
+    } catch (err) {
+      console.log(JSON.parse(JSON.stringify(err)));
+    }
+  }
 
   return (
     <Grid container rowSpacing={2} spacing={2}>
@@ -179,7 +179,7 @@ const CharSheet = ({character}) => {
       </Grid>
 
       <Grid item xs={12}>
-        {/* <h3>Notes <IconButton onClick={openCreate}><AddIcon/></IconButton></h3> */}
+        <h3>Notes <IconButton onClick={openCreate}><Add/></IconButton></h3>
         {addError && (
           <Alert severity="error" onClose={() => {}}>
             <AlertTitle>Error</AlertTitle>
@@ -194,14 +194,14 @@ const CharSheet = ({character}) => {
         )}
         {showCreateNote && (
           <div id="createNote">
-            <TextField name="title" placeholder="Title" onClick={handleNoteChange}></TextField>
-            <TextField multiline name="text" onClick={handleNoteChange}></TextField>
+            <TextField name="title" placeholder="Title" onChange={handleNoteChange}></TextField>
+            <TextField multiline name="text" onChange={handleNoteChange}></TextField>
             <Button onClick={submitNote}>Submit</Button>
           </div>
         )}
         {charData.notes.map((note) => {
         <div class="note">
-          {/* <h4>{note.title} <IconButton onClick={(event) => deleteNote(event, note._id)}><RemoveIcon/></IconButton></h4> */}
+          <h4>{note.title} <IconButton onClick={(event) => removeNote(event, note._id)}><Remove/></IconButton></h4>
           <h5>{note.timestamp}</h5>
           <p>{note.text}</p>
         </div>
