@@ -1,7 +1,7 @@
 const jwt = require('jsonwebtoken');
-require('dotenv').config;
+require('dotenv').config('./.env');
 // set token secret and expiration date
-const secret = process.env.SUPER_SECRET || 'jenkins';
+const secret = process.env.SUPER_SECRET;
 const expiration = '2h';
 
 module.exports = {
