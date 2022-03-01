@@ -41,7 +41,7 @@ function App() {
             <Route exact path="/profile">
               <Profile />
             </Route>
-            <Route exact path="/character/:id">
+            <Route exact path="/character/:characterId">
               <CharSheetViewer />
             </Route>
             <Route>

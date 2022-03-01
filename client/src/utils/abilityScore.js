@@ -1,4 +1,4 @@
-function generateScore() {
+const generateScore = () => {
   let a1 = Math.floor(Math.random() * 6 + 1);
   let a2 = Math.floor(Math.random() * 6 + 1);
   let a3 = Math.floor(Math.random() * 6 + 1);
@@ -27,13 +27,11 @@ function generateScore() {
 }
 // generateScore();
 
-function getModifier(finalScore) {
-  return Math.floor((finalScore - 10) / 2);
-}
+
 
 //calculating hp modifier
 
-// function getHPTotal() {
+// const getHPTotal = () => {
 //   let hitPoints = `${classHitDie} * ${characterlevel}` + `${conMod} * ${characterLevel}`;
 //   return hitPoints; 
 // }
@@ -41,22 +39,22 @@ function getModifier(finalScore) {
 
 //below is hitpoint rolls for leveling up
 
-function d6HP() {
+const d6HP = () => {
   let d6 = Math.floor((Math.random() * 6) + 1);
   return d6;
 }
 
-function d8HP() {
+const d8HP = () => {
   let d8 = Math.floor((Math.random() * 8) + 1);
   return d8;
 }
 
-function d10HP() {
+const d10HP = () => {
     let d10 = Math.floor((Math.random() * 10) +1 )
     return d10;
 }
 
-function d12HP() {
+const d12HP = () => {
     let d12 = Math.floor((Math.random() * 12) +1 )
     return d12;
 }
@@ -92,5 +90,21 @@ function d12HP() {
 //     return damageRoll;
 // }
 
+const getModifier = () => {
+  let strScore = document.getElementById("strScore").value;
+  document.getElementById("strMod").value = Math.floor((strScore - 10)/2);
+  let dexScore = document.getElementById("dexScore").value;
+  document.getElementById("dexMod").value = Math.floor((dexScore - 10)/2);
+  let conScore = document.getElementById("conScore").value;
+  document.getElementById("conMod").value = Math.floor((conScore - 10)/2);
+  let intScore = document.getElementById("intScore").value;
+  document.getElementById("intMod").value = Math.floor((intScore - 10)/2);
+  let wisScore = document.getElementById("wisScore").value;
+  document.getElementById("wisMod").value = Math.floor((wisScore - 10)/2);
+  let chaScore = document.getElementById("chaScore").value;
+  document.getElementById("chaMod").value = Math.floor((chaScore - 10)/2);
+}
 
-module.exports = { generateScore, getModifier, d6HP, d8HP, d10HP, d12HP };
+
+
+// export default  { generateScore, d6HP, d8HP, d10HP, d12HP, getHPTotal, getModifier };
