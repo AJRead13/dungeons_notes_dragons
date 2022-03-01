@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
-import { AppBar, Box, Button, Container, Dialog, IconButton, Menu, MenuItem, Tabs, Tab, Toolbar } from '@mui/material';
+import { AppBar, Box, Button, Container, Dialog, IconButton, Menu, MenuItem, Tabs, Tab, Toolbar, ListItemText } from '@mui/material';
 import { AccountCircle } from '@mui/icons-material';
 import SignupForm from './SignupForm';
 import LoginForm from './LoginForm';
@@ -61,11 +61,15 @@ const Navbar = () => {
                   <MenuItem 
                     containerelement={<Link to="/profile" />}
                     primarytext="Profile"
-                  />
+                  >
+                    <ListItemText>Profile</ListItemText>
+                  </MenuItem>
                   <MenuItem
                     onClick={Auth.logout}
                     primarytext="Logout"
-                  />
+                  >
+                  <ListItemText>Logout</ListItemText>
+                  </MenuItem>
                 </Menu>
             </>
           ) : (
