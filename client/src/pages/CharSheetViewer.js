@@ -10,15 +10,15 @@ import Searchbox from '../components/Searchbox';
 
 
 const CharSheetViewer = () => {
-  const { id } = useParams();
-
+  const { characterId } = useParams();
+  console.log(characterId)
   const { loading, data, error } = useQuery(QUERY_SINGLE_CHARACTER, {
     variables: {
-      _id: id
+      characterId: characterId
     },
 		fetchPolicy: "no-cache",
 	});
-
+  const character = data?.character || {};
   return (
     <div>
       {error && (     
@@ -30,7 +30,7 @@ const CharSheetViewer = () => {
       {loading ? (
         <div>Loading...</div>
       ) : (
-        <CharSheet character={data} />
+        <CharSheet character={character} />
       )}
     </div>
   )

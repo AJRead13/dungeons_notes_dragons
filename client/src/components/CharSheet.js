@@ -5,8 +5,9 @@ import { TextFieldsOutlined } from "@mui/icons-material";
 const getModifier = score => Math.floor((score - 10)/2);
 
 const CharSheet = (character) => {
-  const [charData, setCharData] = useState({...character, level: 1});
-
+  const char = character?.character || {};
+  const [charData, setCharData] = useState({ characterName: char.characterName, race: char.race, className: char.className, hitPoints: char.hitPoints, strength: char.strength, dexterity: char.dexterity, constitution: char.constitution, intelligence: char.intelligence, wisdom: char.wisdom, charisma: char.charisma, level: 1 });
+ 
   const handleInputChange = (event) => {
     const { name, value } = event.target;
     setCharData({ ...charData, [name]: value });
