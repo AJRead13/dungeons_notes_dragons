@@ -6,63 +6,63 @@ import { __Field } from "graphql";
 import { useMutation, useQuery } from '@apollo/client';
 import Auth from '../utils/auth';
 
-const getModifier = score => Math.floor((score - 10)/2);
-let barbarianHp = 12;
-let bardHp = 8;
-let clericHp = 8;
-let druidHp = 8;
-let fighterHp = 10;
-let monkHp = 8;
-let paladinHp = 10;
-let rangerHp = 10;
-let rogueHp = 8;
-let sorcererHp = 6;
-let warlockHp = 8;
-let wizardHp = 6;
+// const getModifier = score => Math.floor((score - 10)/2);
+// let barbarianHp = 12;
+// let bardHp = 8;
+// let clericHp = 8;
+// let druidHp = 8;
+// let fighterHp = 10;
+// let monkHp = 8;
+// let paladinHp = 10;
+// let rangerHp = 10;
+// let rogueHp = 8;
+// let sorcererHp = 6;
+// let warlockHp = 8;
+// let wizardHp = 6;
 
-const getHpTotal = () => {
-  // const char = character?.character;
-  // const [charData, setCharData] = useState({...char, level: 1});
+// const getHpTotal = () => {
+//   // const char = character?.character;
+//   // const [charData, setCharData] = useState({...char, level: 1});
   
-  if (charData.race == barbarian) {
-    charData.hitPoints = barbarianHp + getModifier(charData.constitution)
-  }
-  if (charData.race == bard) {
-    charData.hitPoints = bardHp + getModifier(charData.constitution)
-  }  
-  if (charData.race == cleric) {
-    charData.hitPoints = clericHp + getModifier(charData.constitution)
-  }  
-  if (charData.race == druid) {
-    charData.hitPoints = druidHp + getModifier(charData.constitution)
-  }     
-  if (charData.race == fighter) {
-    charData.hitPoints = fighterHp + getModifier(charData.constitution)
-  }     
-  if (charData.race == monk) {
-    charData.hitPoints = monkHp + getModifier(charData.constitution)
-  }     
-  if (charData.race == paladin) {
-    charData.hitPoints = paladinHp + getModifier(charData.constitution)
-  }      
-  if (charData.race == ranger) {
-    charData.hitPoints = rangerHp + getModifier(charData.constitution)
-  }          
-  if (charData.race == rogue) {
-    charData.hitPoints = rogueHp + getModifier(charData.constitution)
-  }     
-  if (charData.race == sorcerer) {
-    charData.hitPoints = sorcererHp + getModifier(charData.constitution)
-  }     
-  if (charData.race == warlock) {
-    charData.hitPoints = warlockHp + getModifier(charData.constitution)
-  }     
-  if (charData.race == wizard) {
-    charData.hitPoints = wizardHp + getModifier(charData.constitution)
-  }   
-  return charData.hitPoints;  
+//   if (charData.race == barbarian) {
+//     charData.hitPoints = barbarianHp + getModifier(charData.constitution)
+//   }
+//   if (charData.race == bard) {
+//     charData.hitPoints = bardHp + getModifier(charData.constitution)
+//   }  
+//   if (charData.race == cleric) {
+//     charData.hitPoints = clericHp + getModifier(charData.constitution)
+//   }  
+//   if (charData.race == druid) {
+//     charData.hitPoints = druidHp + getModifier(charData.constitution)
+//   }     
+//   if (charData.race == fighter) {
+//     charData.hitPoints = fighterHp + getModifier(charData.constitution)
+//   }     
+//   if (charData.race == monk) {
+//     charData.hitPoints = monkHp + getModifier(charData.constitution)
+//   }     
+//   if (charData.race == paladin) {
+//     charData.hitPoints = paladinHp + getModifier(charData.constitution)
+//   }      
+//   if (charData.race == ranger) {
+//     charData.hitPoints = rangerHp + getModifier(charData.constitution)
+//   }          
+//   if (charData.race == rogue) {
+//     charData.hitPoints = rogueHp + getModifier(charData.constitution)
+//   }     
+//   if (charData.race == sorcerer) {
+//     charData.hitPoints = sorcererHp + getModifier(charData.constitution)
+//   }     
+//   if (charData.race == warlock) {
+//     charData.hitPoints = warlockHp + getModifier(charData.constitution)
+//   }     
+//   if (charData.race == wizard) {
+//     charData.hitPoints = wizardHp + getModifier(charData.constitution)
+//   }   
+//   return charData.hitPoints;  
 
-};
+// };
 
 
 const CharSheet = ({character}) => {
