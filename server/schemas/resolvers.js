@@ -80,19 +80,18 @@ const resolvers = {
       }
       throw new AuthenticationError('You need to be logged in!');
     },
-    deleteCharacter: async (parent, { characterId }, context) => {
+    deleteCharacter: async (parent, args , context) => {
       if (context.user) {
         const character = await Character.findOneAndDelete({
-          _id: characterId,
+          _id: args.charToDelete,
           madeBy: context.user.username,
         });
 
-        await User.findOneAndUpdate(
-          { _id: context.user._id },
-          { $pull: { characters: character._id } }
-        );
-
-        return character;
+        return User.findOneAndUpdate(
+          { _id: context.user._id }, 
+          { $pull: { characters: { charId: args.charToDelete }}},
+          { new: true }
+          );
       }
       throw new AuthenticationError('You need to be logged in!');
     },
