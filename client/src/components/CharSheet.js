@@ -21,8 +21,7 @@ import Auth from '../utils/auth';
 // let wizardHp = 6;
 
 // const getHpTotal = () => {
-//   // const char = character?.character;
-//   // const [charData, setCharData] = useState({...char, level: 1});
+//   const [charData, setCharData] = useState({...char, level: 1});
   
 //   if (charData.race == barbarian) {
 //     charData.hitPoints = barbarianHp + getModifier(charData.constitution)
@@ -154,7 +153,7 @@ const CharSheet = ({character}) => {
         <h3 className="charClass">{charData.className}</h3>
       </Grid>
       <Grid item xs={4}>
-        <h3 className="charHP">{charData.hitPoints}</h3>
+        <h3 className="charHP">{getHpTotal(charData.className)}</h3>
         <h3 className="charAlignment">{charData.alignment}</h3>
       </Grid>
 
