@@ -68,3 +68,9 @@ export const QUERY_SINGLE_CHARACTER = gql`
     }
   }
 `;
+
+export const QUERY_RACE = gql`
+  query race {
+    race
+  }
+`;
