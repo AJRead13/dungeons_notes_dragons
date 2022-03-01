@@ -38,12 +38,6 @@ export const ADD_CHARACTER = gql`
       intelligence
       wisdom
       charisma
-      notes {
-        _id
-        title
-        text
-        timestamp
-      }
       madeBy
     }
   }

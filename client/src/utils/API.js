@@ -29,6 +29,12 @@ export const loginUser = (userData) => {
   });
 };
 
+export const getRaces = async () => {
+  const response = await fetch(`${prefix}/races`);
+  const data = await response.json();
+  return data;
+}
+
 export const getRaceInfo = async (race) => {
   const response = await fetch(`${prefix}/races/${race}`);
   const data = await response.json();
