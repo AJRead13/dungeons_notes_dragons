@@ -6,7 +6,7 @@ import { __Field } from "graphql";
 import { useMutation, useQuery } from '@apollo/client';
 import Auth from '../utils/auth';
 
-// const getModifier = score => Math.floor((score - 10)/2);
+ const getModifier = score => Math.floor((score - 10)/2);
 // let barbarianHp = 12;
 // let bardHp = 8;
 // let clericHp = 8;
