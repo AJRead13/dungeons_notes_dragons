@@ -1,17 +1,11 @@
 import React from "react";
-import { Redirect, useParams } from "react-router-dom";
-
 import { useQuery, useMutation } from "@apollo/client";
 import Auth from "../utils/auth";
 import { Link } from "react-router-dom";
-import CharSheet from "../components/CharSheet";
-import Searchbox from "../components/Searchbox";
 import { GET_ME } from "../utils/queries";
 import {
   Button,
-  Dialog,
   ListItemButton,
-  ListItemText,
   List,
   Card,
   CardContent,

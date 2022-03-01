@@ -35,7 +35,6 @@ const resolvers = {
     addUser: async (parent, { username, email, password } ) => {
       const user = await User.create({ username, email, password });
       const token = signToken(user);
-      console.log(token, user);
       return { token, user };
     },
     login: async (parent, { email, password }) => {
@@ -94,6 +93,27 @@ const resolvers = {
           );
       }
       throw new AuthenticationError('You need to be logged in!');
+    },
+    updateCharacter: async (parent, { characterId, characterToUpdate }, context) => {
+      if(context.user){
+        const updatedCharacter = await Character.findOneAndUpdate(
+          {_id: characterId},
+          { $set: { 
+            characterName: characterToUpdate.characterName,
+            className: characterToUpdate.className,
+            race: characterToUpdate.race,
+            hitPoints: characterToUpdate.hitPoints,
+            strength: characterToUpdate.strength,
+            dexterity: characterToUpdate.dexterity,
+            constitution: characterToUpdate.constitution,
+            intelligence: characterToUpdate.intelligence,
+            wisdom: characterToUpdate.wisdom,
+            charisma: characterToUpdate.charisma
+          }},
+          { new: true }
+        );
+        return updatedCharacter;
+      }
     },
     addNote: async (parent, { characterId, title, text, timestamp }, context) => {
       if (context.user) {

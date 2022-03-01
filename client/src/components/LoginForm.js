@@ -11,17 +11,6 @@ const LoginForm = () => {
   const [showPassword, setShowPassword] = useState(false);
   const [loginUser, { error }] = useMutation(LOGIN_USER);
 
-
-  // const handleInputChange = (event) => {
-  //   const { name, value } = event.target;
-  //   setUserFormData({ ...userFormData, [name]: value });
-  //   if (name === 'email') {
-  //     const form = event.currentTarget;
-  //     if (form.checkValidity() === false) {
-  //       setInvalidEmail(true);
-  //     }
-  //   }
-  // };
   const handleInputChange = (event) => {
     const { name, value } = event.target;
     setUserFormData({ ...userFormData, [name]: value });
