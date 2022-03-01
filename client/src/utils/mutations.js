@@ -122,29 +122,55 @@ mutation updateCharacter($characterId: ID!, $characterToUpdate: CharacterInput) 
 export const ADD_NOTE = gql`
   mutation addNote(
     $characterId: ID!
-    $title: String
-    $text: String
+    $noteToSave: NoteInput
   ) {
     addNote(
       characterId: $characterId
-      title: $title
-      text: $text
+      noteToSave: $noteToSave
     ) {
       _id
-      title
-      text
-      timestamp
+      characterName
+      race
+      className
+      hitPoints
+      strength
+      dexterity
+      constitution
+      intelligence
+      wisdom
+      charisma
+      notes {
+        _id
+        title
+        text
+        timestamp
+      }
+      madeBy
     }
   }
 `;
 
 export const DELETE_NOTE = gql`
-  mutation deleteNote($characterId: ID!, $noteId: ID!) {
-    deleteNote(characterId: $characterId, noteId: $noteId) {
+  mutation deleteNote($characterId: ID!, $noteToDelete: ID!) {
+    deleteNote(characterId: $characterId, noteToDelete: $noteToDelete) {
       _id
-      title
-      text
-      timestamp
+      characterName
+      race
+      className
+      hitPoints
+      strength
+      dexterity
+      constitution
+      intelligence
+      wisdom
+      charisma
+      notes {
+        _id
+        title
+        text
+        timestamp
+      }
+      madeBy
     }
   }
 `;

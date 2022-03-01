@@ -116,27 +116,23 @@ const resolvers = {
         return updatedCharacter;
       }
     },
-    addNote: async (parent, { characterId, title, text, timestamp }, context) => {
+    addNote: async (parent, { characterId, noteToSave }, context) => {
       if (context.user) {
         const updatedCharacter = await Character.findOneAndUpdate(
           { _id: characterId },
-          { $addToSet: { notes: {title: title, text: text} }},
-          {
-            returnNewDocument: true
-          }
+          { $addToSet: { notes: noteToSave }},
+          { new: true }
         );
         return updatedCharacter;
       }
       throw new AuthenticationError('You need to be logged in!');
     },
-    deleteNote: async (parent, { characterId, noteId }, context) => {
+    deleteNote: async (parent, { characterId, noteToDelete }, context) => {
       if (context.user) {
         const updatedCharacter = await Character.findOneAndUpdate(
           { _id: characterId },
-          { $pull: { notes: { _id: noteId } } },
-          {
-            returnNewDocument: true
-          }
+          { $pull: { notes: { noteId: noteToDelete } } },
+          { new: true }
         );
 
         return updatedCharacter;
