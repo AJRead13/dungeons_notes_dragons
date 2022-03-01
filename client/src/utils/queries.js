@@ -6,6 +6,7 @@ export const GET_ME = gql`
       _id
       username
       characters {
+        _id
         characterName
         race
         className
