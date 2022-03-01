@@ -120,7 +120,7 @@ const CharSheet = (character) => {
           <input type="number" id="charLevel" min="1" max="20"></input>
         </div>
         <div className="speed">
-          <p>Walking</p>
+          <p>Speed</p>
           <input type="number" placeholder="30"></input>
         </div>
         <div className="armorClass">
