@@ -37,7 +37,7 @@ const typeDefs = gql`
     user(userId: ID!): User
     characters: [Character]!
     character(characterId: ID!): Character
-    notes: [Note]!
+    notes: [Note]
     note(noteId: ID!): Note
     me: User
   }

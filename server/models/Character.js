@@ -6,6 +6,10 @@ const characterSchema = new Schema({
 		required: true,
 		unique: true,
 	},
+	race: {
+		type: String,
+		required: true,
+	},
 	className: {
 		type: String,
 		required: true,
