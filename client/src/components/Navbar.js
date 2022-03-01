@@ -1,10 +1,12 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { AppBar, Box, Button, Container, Dialog, IconButton, Menu, MenuItem, Tabs, Tab, Toolbar, ListItemText } from '@mui/material';
+import Typography from '@mui/material/Typography';
 import { AccountCircle } from '@mui/icons-material';
 import SignupForm from './SignupForm';
 import LoginForm from './LoginForm';
 import Searchbox from './Searchbox';
+import icon from '../images/dndIconSmall.png';
 
 import Auth from '../utils/auth';
 
@@ -30,11 +32,21 @@ const Navbar = () => {
 		<>
 			<AppBar position="static">
 				<Container maxWidth="xl">
-					<Toolbar disableGutters>
-						<Link style={{ color: "black" }} to="/">
-							Dungeons, Notes, Dragons
-						</Link>
-						<Searchbox></Searchbox>
+					<Toolbar disableGutters sx={{justifyContent: "space-between"}}>
+					<Typography
+            variant="h6"
+            noWrap
+            component="div"
+            sx={{ mr: 2, display: { xs: 'flex', md: 'flex' }, maxWidth: { xs: "50px", md: "100px"}, maxHeight: { xs: "50px", md: "100px"}, objectFit: { xs: "contain"} }}
+          >
+          <Link style={{ color: "black" }} to="/">
+							<img src={icon} alt='logo' style={{maxWidth: "100px", objectFit: "contain"}}></img>
+					</Link>
+          </Typography>
+				
+					<Searchbox ></Searchbox>
+					
+					<Typography>
 						{Auth.loggedIn() ? (
 							<>
 								<IconButton
@@ -45,7 +57,7 @@ const Navbar = () => {
 									onClick={handleMenu}
 									color="inherit"
 								>
-									<AccountCircle />
+									<AccountCircle  />
 								</IconButton>
 								<Menu
 									id="menu-appbar"
@@ -80,6 +92,7 @@ const Navbar = () => {
 								Login/Sign Up
 							</Button>
 						)}
+						</Typography>
 					</Toolbar>
 				</Container>
 			</AppBar>

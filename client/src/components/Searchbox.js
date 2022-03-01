@@ -112,21 +112,21 @@ const Searchbox = () => {
 			>Submit Search
 			</Button>
 		</Box>
-		<Container>
+		{/* <Container>
 			{/* <h5>
 				{searched.length
 					? `Viewing ${searched.length} results:`
 					: "Search for a race/class to begin"}
 			</h5> */}
-			<div>
+			{/* <div>
 				{searched.map((search) => {
 					return (
 					<h2>${search.name}</h2>
 					)}
 
 				)}
-			</div>
-		</Container>
+			</div> */}
+		{/* </Container> */} 
 		</>
 	);
 }
