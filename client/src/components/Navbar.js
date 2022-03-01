@@ -4,6 +4,7 @@ import { AppBar, Box, Button, Container, Dialog, IconButton, Menu, MenuItem, Tab
 import { AccountCircle } from '@mui/icons-material';
 import SignupForm from './SignupForm';
 import LoginForm from './LoginForm';
+import Searchbox from './Searchbox';
 
 import Auth from '../utils/auth';
 
@@ -26,79 +27,78 @@ const Navbar = () => {
   }
 
   return (
-    <>
-      <AppBar position="static">
-        <Container maxWidth="xl">
-          <Toolbar disableGutters>
-          <Link style = {{color: "black"}} to="/">Dungeons, Notes, Dragons</Link>
-          {Auth.loggedIn() ? (
-            <>
-              <IconButton
-                  size="large"
-                  aria-label="account of current user"
-                  aria-controls="menu-appbar"
-                  aria-haspopup="true"
-                  onClick={handleMenu}
-                  color="inherit"
-                >
-                <AccountCircle />
-              </IconButton>  
-              <Menu
-                  id="menu-appbar"
-                  anchorEl={anchorEl}
-                  anchorOrigin={{
-                    vertical: 'top',
-                    horizontal: 'right',
-                  }}
-                  keepMounted
-                  transformOrigin={{
-                    vertical: 'top',
-                    horizontal: 'right',
-                  }}
-                  open={Boolean(anchorEl)}
-                  onClose={handleClose}
-                >
-                  <MenuItem 
-                    containerelement={<Link to={{pathname: "/profile"}} />}
-                    primarytext="Profile"
-                  >
-                    <ListItemText><Link to={{ pathname: `/profile` }}>
-										Profile
-									</Link></ListItemText>
-                  </MenuItem>
-                  <MenuItem
-                    onClick={Auth.logout}
-                    primarytext="Logout"
-                  >
-                  <ListItemText>Logout</ListItemText>
-                  </MenuItem>
-                </Menu>
-            </>
-          ) : (
-            <Button color="inherit" onClick={() => setShowModal(true)}>Login/Sign Up</Button>
-          )}
-          </Toolbar>
-        </Container>
-      </AppBar>
-      <Dialog
-        open={showModal}
-        onClose={() => setShowModal(false)}
-      >
-        <Box>
-          <Tabs value={tab} onChange={handleTabChange}>
-            <Tab label="Log In" />
-            <Tab label="Sign Up" />
-          </Tabs>
-        </Box>
-        <section tabIndex={0} hidden={tab !== 0}>
-          <LoginForm/>
-        </section>
-        <section tabIndex={1} hidden={tab !== 1}>
-          <SignupForm/>
-        </section>
-      </Dialog>
-    </>
-  )
+		<>
+			<AppBar position="static">
+				<Container maxWidth="xl">
+					<Toolbar disableGutters>
+						<Link style={{ color: "black" }} to="/">
+							Dungeons, Notes, Dragons
+						</Link>
+						<Searchbox></Searchbox>
+						{Auth.loggedIn() ? (
+							<>
+								<IconButton
+									size="large"
+									aria-label="account of current user"
+									aria-controls="menu-appbar"
+									aria-haspopup="true"
+									onClick={handleMenu}
+									color="inherit"
+								>
+									<AccountCircle />
+								</IconButton>
+								<Menu
+									id="menu-appbar"
+									anchorEl={anchorEl}
+									anchorOrigin={{
+										vertical: "top",
+										horizontal: "right",
+									}}
+									keepMounted
+									transformOrigin={{
+										vertical: "top",
+										horizontal: "right",
+									}}
+									open={Boolean(anchorEl)}
+									onClose={handleClose}
+								>
+									<MenuItem
+										containerelement={<Link to={{ pathname: "/profile" }} />}
+										primarytext="Profile"
+									>
+										<ListItemText>
+											<Link to={{ pathname: `/profile` }}>Profile</Link>
+										</ListItemText>
+									</MenuItem>
+									<MenuItem onClick={Auth.logout} primarytext="Logout">
+										<ListItemText>Logout</ListItemText>
+									</MenuItem>
+								</Menu>
+							</>
+						) : (
+							<Button color="inherit" onClick={() => setShowModal(true)}>
+								Login/Sign Up
+							</Button>
+						)}
+					</Toolbar>
+				</Container>
+			</AppBar>
+			<Dialog open={showModal} onClose={() => setShowModal(false)}>
+				<Box>
+					<Tabs value={tab} onChange={handleTabChange}>
+						<Tab label="Log In" />
+						<Tab label="Sign Up" />
+					</Tabs>
+				</Box>
+				<section tabIndex={0} hidden={tab !== 0}>
+					<LoginForm />
+				</section>
+				<section tabIndex={1} hidden={tab !== 1}>
+					<SignupForm />
+				</section>
+			</Dialog>
+		</>
+	);
 }
 
 export default Navbar;

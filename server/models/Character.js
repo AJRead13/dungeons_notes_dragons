@@ -42,10 +42,10 @@ const characterSchema = new Schema({
 		type: Number,
 		required: true,
 	},
-  madeBy: {
-    type: String
-  },
-  notes: [noteSchema]
+	madeBy: {
+		type: String,
+	},
+	notes: [noteSchema],
 });
 
 const Character = model('Character', characterSchema);

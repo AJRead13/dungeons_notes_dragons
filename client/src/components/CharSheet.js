@@ -1,8 +1,10 @@
 import React, { useState } from "react";
-import { Button, Grid, IconButton, TextField } from '@mui/material';
-import { AddIcon, RemoveIcon } from "@mui/icons-material";
+import { Button, Grid, IconButton, TextField, Alert, AlertTitle } from '@mui/material';
+// import { AddIcon, RemoveIcon } from "@mui/icons-material";
 import { ADD_NOTE, DELETE_NOTE } from '../utils/mutations';
 import { __Field } from "graphql";
+import { useMutation } from "@apollo/client";
+
 
 const getModifier = score => Math.floor((score - 10)/2);
 
@@ -46,11 +48,11 @@ const CharSheet = (character) => {
     }
   }
 
-  const deleteNote = async (event, noteId) => {
+  const deleteNoteFromChar = async (event, noteId) => {
     event.preventDefault();
 
     try {
-      await deleteNote({variables: { characterId: charData._id, noteId: noteId}});
+      await deleteNoteFromChar({variables: { characterId: charData._id, noteId: noteId}});
       setCharData({...charData, notes: charData.notes.filter((note) => note._id !== noteId)});
     } catch (err) {
       console.log(JSON.parse(JSON.stringify(err)));
@@ -150,7 +152,7 @@ const CharSheet = (character) => {
       </Grid>
 
       <Grid item xs={12}>
-        <h3>Notes <IconButton onClick={openCreate}><AddIcon/></IconButton></h3>
+        {/* <h3>Notes <IconButton onClick={openCreate}><AddIcon/></IconButton></h3> */}
         {addError && (
           <Alert severity="error" onClose={() => {}}>
             <AlertTitle>Error</AlertTitle>
@@ -172,7 +174,7 @@ const CharSheet = (character) => {
         )}
         {charData.notes.map((note) => {
         <div class="note">
-          <h4>{note.title} <IconButton onClick={(event) => deleteNote(event, note._id)}><RemoveIcon/></IconButton></h4>
+          {/* <h4>{note.title} <IconButton onClick={(event) => deleteNoteFromChar(event, note._id)}><RemoveIcon/></IconButton></h4> */}
           <h5>{note.timestamp}</h5>
           <p>{note.text}</p>
         </div>
