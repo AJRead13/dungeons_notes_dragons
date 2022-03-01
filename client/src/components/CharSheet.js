@@ -57,7 +57,7 @@ export default CharSheet;
         <tr>
           <td>Strength</td>
           <td>
-            <input type="number" value="10" id="strScore"></input>
+            <input type="number" value="10" id="strScore" onChange="getModifier()"></input>
           </td>
           <td>
             <input type="number" placeholder="0" id="strMod"></input>
@@ -66,7 +66,7 @@ export default CharSheet;
         <tr>
           <td>Dexterity</td>
           <td>
-            <input type="number" value="10" id="dexScore"></input>
+            <input type="number" value="10" id="dexScore" onChange="getModifier()"></input>
           </td>
           <td>
             <input type="number" placeholder="0" id="dexMod"></input>
@@ -75,7 +75,7 @@ export default CharSheet;
         <tr>
           <td>Constitution</td>
           <td>
-            <input type="number" value="10" id="conScore"></input>
+            <input type="number" value="10" id="conScore" onChange="getModifier()"></input>
           </td>
           <td>
             <input type="number" placeholder="0" id="conMod"></input>
@@ -84,7 +84,7 @@ export default CharSheet;
         <tr>
           <td>Intelligence</td>
           <td>
-            <input type="number" value="10" id="intScore"></input>
+            <input type="number" value="10" id="intScore" onChange="getModifier()"></input>
           </td>
           <td>
             <input type="number" placeholder="0" id="intMod"></input>
@@ -93,7 +93,7 @@ export default CharSheet;
         <tr>
           <td>Wisdom</td>
           <td>
-            <input type="number" value="10" id="wisScore"></input>
+            <input type="number" value="10" id="wisScore" onChange="getModifier()"></input>
           </td>
           <td>
             <input type="number" placeholder="0" id="wisMod"></input>
@@ -102,7 +102,7 @@ export default CharSheet;
         <tr>
           <td>Charisma</td>
           <td>
-            <input type="number" value="10" id="chaScore"></input>
+            <input type="number" value="10" id="chaScore" onChange="getModifier()"></input>
           </td>
           <td>
             <input type="number" placeholder="0" id="chaMod"></input>
