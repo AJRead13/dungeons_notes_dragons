@@ -37,9 +37,16 @@ const Home = () => {
 						{characterList.map((character) => {
 							return (
 								<li key={character._id}>
+									{Auth.loggedIn() ? (
 									<Link to={{ pathname: `/character/${character._id}` }}>
 										{character.characterName}
 									</Link>
+									) : (
+										<Link to={{pathname: '/' }}>
+										{character.characterName}
+									</Link>
+									)
+									}
 								</li>
 							);
 						})}
