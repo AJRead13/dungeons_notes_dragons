@@ -1,100 +1,110 @@
-import React from "react";
+import React, { useState } from "react";
+import { Grid, TextField } from '@mui/material';
+import { TextFieldsOutlined } from "@mui/icons-material";
+
+const getModifier = score => Math.floor((score - 10)/2);
 
 const CharSheet = (character) => {
-  return <div className="container">
-  <div className="charInfo">
-    <div className="col-4">
-      <h3 className="charName">{character.name}</h3>
-      <h3 className="userName">{character.user.name}</h3>
-    </div>
-    <div className="col-4">
-      <h3 className="charRace">{character.race}</h3>
-      <h3 className="charClass">{character.class}</h3>
-    </div>
-    <div className="col-4">
-      <h3 className="charHP">{character.hitPoints}</h3>
-      <h3 className="charAlignment">{character.alignment}</h3>
-    </div>
-  </div>
-  <div className="row">
-    <div className="col-4">
-      <table className="table">
-        <tr>
-          <th>Ability</th>
-          <th>Score</th>
-          <th>Modifier</th>
-        </tr>
-        <tr>
-          <td>Strength</td>
-          <td>
-            <input type="number" value="10" id="strScore" onChange="getModifier()"></input>
-          </td>
-          <td>
-            <input type="number" placeholder="0" id="strMod"></input>
-          </td>
-        </tr>
-        <tr>
-          <td>Dexterity</td>
-          <td>
-            <input type="number" value="10" id="dexScore" onChange="getModifier()"></input>
-          </td>
-          <td>
-            <input type="number" placeholder="0" id="dexMod"></input>
-          </td>
-        </tr>
-        <tr>
-          <td>Constitution</td>
-          <td>
-            <input type="number" value="10" id="conScore" onChange="getModifier()"></input>
-          </td>
-          <td>
-            <input type="number" placeholder="0" id="conMod"></input>
-          </td>
-        </tr>
-        <tr>
-          <td>Intelligence</td>
-          <td>
-            <input type="number" value="10" id="intScore" onChange="getModifier()"></input>
-          </td>
-          <td>
-            <input type="number" placeholder="0" id="intMod"></input>
-          </td>
-        </tr>
-        <tr>
-          <td>Wisdom</td>
-          <td>
-            <input type="number" value="10" id="wisScore" onChange="getModifier()"></input>
-          </td>
-          <td>
-            <input type="number" placeholder="0" id="wisMod"></input>
-          </td>
-        </tr>
-        <tr>
-          <td>Charisma</td>
-          <td>
-            <input type="number" value="10" id="chaScore" onChange="getModifier()"></input>
-          </td>
-          <td>
-            <input type="number" placeholder="0" id="chaMod"></input>
-          </td>
-        </tr>
-      </table>
-    </div>
-    <div className="col-4">
-      <h2>Player Level</h2>
-      <br>
-      <input type="number" id="charLevel" min="1" max="20"></input>
-      </br>
-    </div>
+  const [charData, setCharData] = useState({...character, level: 1});
 
-    <div className="col-4">
-      <h2>Proficiency Bonus</h2>
-      <br>
-        <input type="number" id="profBonus"></input>
-      </br>
-    </div>
-  </div>
-</div>;
+  const handleInputChange = (event) => {
+    const { name, value } = event.target;
+    setCharData({ ...charData, [name]: value });
+  };
+
+  return (
+    <Grid container rowSpacing={2} spacing={2}>
+      <Grid item xs={4}>
+        <h3 className="charName">{charData.characterName}</h3>
+        <h3 className="userName">{charData.madeBy}</h3>
+      </Grid>
+      <Grid item xs={4}>
+        <h3 className="charRace">{charData.race}</h3>
+        <h3 className="charClass">{charData.className}</h3>
+      </Grid>
+      <Grid item xs={4}>
+        <h3 className="charHP">{charData.hitPoints}</h3>
+        <h3 className="charAlignment">{charData.alignment}</h3>
+      </Grid>
+
+      <Grid item xs={4}>
+        <table>
+          <tbody>
+            <tr>
+              <th>Ability</th>
+              <th>Score</th>
+              <th>Modifier</th>
+            </tr>
+            <tr>
+              <td>Strength</td>
+              <td>
+                <TextField size="small" type="number" name="strength" value={charData.strength} id="strScore" onChange={handleInputChange}></TextField>
+              </td>
+              <td>
+                <TextField size="small" disabled type="number" value={getModifier(charData.strength)} id="strMod"></TextField>
+              </td>
+            </tr>
+            <tr>
+              <td>Dexterity</td>
+              <td>
+                <TextField size="small" type="number" name="dexterity" value={charData.dexterity} id="dexScore" onChange={handleInputChange}></TextField>
+              </td>
+              <td>
+                <TextField size="small" disabled type="number" value={getModifier(charData.dexterity)} id="dexMod"></TextField>
+              </td>
+            </tr>
+            <tr>
+              <td>Constitution</td>
+              <td>
+                <TextField size="small" type="number" name="constitution" value={charData.constitution} id="conScore" onChange={handleInputChange}></TextField>
+              </td>
+              <td>
+                <TextField size="small" disabled type="number" value={getModifier(charData.constitution)} id="conMod"></TextField>
+              </td>
+            </tr>
+            <tr>
+              <td>Intelligence</td>
+              <td>
+                <TextField size="small" type="number" name="intelligence" value={charData.intelligence} id="intScore" onChange={handleInputChange}></TextField>
+              </td>
+              <td>
+                <TextField size="small" disabled type="number" value={getModifier(charData.intelligence)} id="intMod"></TextField>
+              </td>
+            </tr>
+            <tr>
+              <td>Wisdom</td>
+              <td>
+                <TextField size="small" type="number" name="wisdom" value={charData.wisdom} id="wisScore" onChange={handleInputChange}></TextField>
+              </td>
+              <td>
+                <TextField size="small" disabled type="number" value={getModifier(charData.wisdom)} id="wisMod"></TextField>
+              </td>
+            </tr>
+            <tr>
+              <td>Charisma</td>
+              <td>
+                <TextField size="small" type="number" name="charisma" value={charData.charisma} id="chaScore" onChange={handleInputChange}></TextField>
+              </td>
+              <td>
+                <TextField size="small" disabled type="number" value={getModifier(charData.charisma)} id="chaMod"></TextField>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </Grid>
+      <Grid item xs={4}>
+        <h3>Player Level</h3>
+        <br/>
+        <TextField type="number" name="level" id="charLevel" min="1" max="20" value={charData.level} onChange={handleInputChange}></TextField>
+      </Grid>
+
+      <Grid item xs={4}>
+        <h3>Proficiency Bonus</h3>
+        <br/>
+        <TextField type="number" id="profBonus" value={Math.ceil((charData.level/4) + 1)}></TextField>
+      </Grid>
+    </Grid>
+  );
 };
 
 export default CharSheet;
