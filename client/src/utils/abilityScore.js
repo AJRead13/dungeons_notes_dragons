@@ -31,10 +31,10 @@ const generateScore = () => {
 
 //calculating hp modifier
 
-const getHPTotal = () => {
-  let hitPoints = `${classHitDie} * ${characterlevel}` + `${conMod} * ${characterLevel}`;
-  return hitPoints; 
-}
+// const getHPTotal = () => {
+//   let hitPoints = `${classHitDie} * ${characterlevel}` + `${conMod} * ${characterLevel}`;
+//   return hitPoints; 
+// }
 
 
 //below is hitpoint rolls for leveling up
