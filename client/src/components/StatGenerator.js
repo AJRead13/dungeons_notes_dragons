@@ -16,10 +16,4 @@ const getModifier = () => {
     document.getElementById("chaMod").value = Math.floor((chaScore - 10)/2);
 }
 
-
-
-
-
-
-
-export default getModifier
+export default getModifier;
