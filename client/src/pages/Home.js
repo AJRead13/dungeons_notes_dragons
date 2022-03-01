@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import {Link} from 'react-router-dom';
 import { useQuery } from "@apollo/client";
 import { QUERY_CHARACTERS } from "../utils/queries";
-import { Button, Dialog } from '@mui/material';
+import { Button, Dialog, List, ListItemButton, Card, CardContent } from '@mui/material';
 import { getRaceInfo, getClassInfo } from "../utils/API";
 
 import CharSheet from '../components/CharSheet';
@@ -28,15 +28,17 @@ const Home = () => {
 			<div className="card-header bg-dark text-center">
 				<h1>Welcome to The Dungeon, Notes, Dragons!</h1>
 			</div>
-			<div className="card-body m-5">
+			<div style={{ textAlign: "center" }} className="card-body m-5">
 				<h2>Here is a list of user-created Characters:</h2>
 				{loading ? (
 					<div>Loading...</div>
 				) : (
-					<ul className="square">
+					<List className="square">
 						{characterList.map((character) => {
 							return (
-								<li key={character._id}>
+								<Card style={{ textAlign: "center" }} key={character._id}>
+									<CardContent style={{ textAlign: "center" }}>
+								<ListItemButton key={character._id}>
 									{Auth.loggedIn() ? (
 									<Link to={{ pathname: `/character/${character._id}` }}>
 										{character.characterName}
@@ -47,10 +49,12 @@ const Home = () => {
 									</Link>
 									)
 									}
-								</li>
+								</ListItemButton>
+								</CardContent>
+								</Card>
 							);
 						})}
-					</ul>
+					</List>
 				)}
 			</div>
 			{Auth.loggedIn() ? (

@@ -1,4 +1,4 @@
-import { gql } from '@apollo/client';
+import { gql } from "@apollo/client";
 
 export const LOGIN_USER = gql`
   mutation login($email: String!, $password: String!) {
@@ -25,8 +25,30 @@ export const ADD_USER = gql`
 `;
 
 export const ADD_CHARACTER = gql`
-  mutation addCharacter($characterName: String, $race: String, $className: String, $hitPoints: Int, $strength: Int, $dexterity: Int, $constitution: Int, $intelligence: Int, $wisdom: Int, $charisma: Int){
-    addCharacter(characterName: $characterName, race: $race, className: $className, hitPoints: $hitPoints, strength: $strength, dexterity: $dexterity, constitution: $constitution, intelligence: $intelligence, wisdom: $wisdom, charisma: $charisma){
+  mutation addCharacter(
+    $characterName: String
+    $race: String
+    $className: String
+    $hitPoints: Int
+    $strength: Int
+    $dexterity: Int
+    $constitution: Int
+    $intelligence: Int
+    $wisdom: Int
+    $charisma: Int
+  ) {
+    addCharacter(
+      characterName: $characterName
+      race: $race
+      className: $className
+      hitPoints: $hitPoints
+      strength: $strength
+      dexterity: $dexterity
+      constitution: $constitution
+      intelligence: $intelligence
+      wisdom: $wisdom
+      charisma: $charisma
+    ) {
       _id
       characterName
       race
@@ -44,33 +66,47 @@ export const ADD_CHARACTER = gql`
 `;
 
 export const DELETE_CHARACTER = gql`
-  mutation deleteCharacter($characterId: ID!) {
-    deleteCharacter(characterId: $characterId){
+  mutation deleteCharacter($charToDelete: ID!) {
+    deleteCharacter(charToDelete: $charToDelete) {
       _id
-      characterName
-      race
-      className
-      hitPoints
-      strength
-      dexterity
-      constitution
-      intelligence
-      wisdom
-      charisma
-      notes {
+      username
+      characters {
         _id
-        title
-        text
-        timestamp
+        characterName
+        race
+        className
+        hitPoints
+        strength
+        dexterity
+        constitution
+        intelligence
+        wisdom
+        charisma
+        notes {
+          _id
+          title
+          text
+          timestamp
+        }
+        madeBy
       }
-      madeBy
     }
   }
 `;
 
 export const ADD_NOTE = gql`
-  mutation addNote($characterId: ID!, $title: String, $text: String, $timestamp: String){
-    addNote(characterId: $characterId, title: $title, text: $text, timestamp: $timestamp){
+  mutation addNote(
+    $characterId: ID!
+    $title: String
+    $text: String
+    $timestamp: String
+  ) {
+    addNote(
+      characterId: $characterId
+      title: $title
+      text: $text
+      timestamp: $timestamp
+    ) {
       _id
       title
       text
@@ -80,8 +116,8 @@ export const ADD_NOTE = gql`
 `;
 
 export const DELETE_NOTE = gql`
-  mutation deleteNote($characterId: ID!, $noteId: ID!){
-    deleteNote(characterId: $characterId, noteId: $noteId){
+  mutation deleteNote($characterId: ID!, $noteId: ID!) {
+    deleteNote(characterId: $characterId, noteId: $noteId) {
       _id
       title
       text
