@@ -1,4 +1,6 @@
 import React from "react";
+import getModifier from "./StatGenerator";
+import { generateScore, d6HP, d8HP, h10HP, d12HP, getHPTotal } from "../utils/abilityScore"
 
 const CharSheet = (character) => {
   return (
