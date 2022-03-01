@@ -39,7 +39,11 @@ const CharForm = () => {
         },
       });
 
+      console.log({data});
       setCharFormData({ characterName: '', race: '', className: '', hitPoints: 10, strength: 0, dexterity: 0, constitution: 0, intelligence: 0, wisdom: 0, charisma: 0 });
+
+      history.go(0);
+
     } catch (err) {
       console.error(JSON.parse(JSON.stringify(err)));
     }

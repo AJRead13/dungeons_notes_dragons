@@ -49,7 +49,6 @@ const typeDefs = gql`
 	}
 
 	input NoteInput {
-		_id: ID!
 		title: String
 		text: String
 		timestamp: String
@@ -71,8 +70,8 @@ const typeDefs = gql`
     addCharacter(characterName: String, race: String, className: String, hitPoints: Int, strength: Int, dexterity: Int, constitution: Int, intelligence: Int, wisdom: Int, charisma: Int): Character
     deleteCharacter(charToDelete: ID!): User
 		updateCharacter(characterId: ID!, characterToUpdate: CharacterInput): Character
-    addNote(characterId: ID!, title: String, text: String, timestamp: String): Note
-    deleteNote(characterId: ID!, noteId: ID!): Note
+    addNote(characterId: ID!, noteToSave: NoteInput): Character
+    deleteNote(characterId: ID!, noteToDelete: ID!): Character
   }
 
 	type Auth {

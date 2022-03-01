@@ -62,6 +62,7 @@ export const QUERY_SINGLE_CHARACTER = gql`
       wisdom
       charisma
       notes {
+        _id
         title
         text
         timestamp
