@@ -86,12 +86,25 @@ const CharSheet = (character) => {
       <input type="number" id="charLevel" min="1" max="20"></input>
       </br>
     </div>
-
     <div className="col-4">
       <h2>Proficiency Bonus</h2>
       <br>
         <input type="number" id="profBonus"></input>
       </br>
+      <div className="charHPNumbers col-4">
+        <h3>Total Hit Points</h3>
+        <br>
+        <input type="number" id="totalHP"></input>
+        </br>
+        <h3>Current Hit Points</h3>
+        <br>
+        <input type="number" id="currentHP"></input>
+        </br>
+        <h3>Temporary Hit Points</h3>
+        <br>
+        <input type="number" id="temporaryHP" placeholder="0"></input>
+        </br>
+      </div>
     </div>
   </div>
 </div>;
