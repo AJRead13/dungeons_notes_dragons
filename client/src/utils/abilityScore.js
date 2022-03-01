@@ -27,9 +27,9 @@ function generateScore() {
 }
 // generateScore();
 
-function getModifier(finalScore) {
-  return Math.floor((finalScore - 10) / 2);
-}
+// function getModifier(finalScore) {
+//   return Math.floor((finalScore - 10) / 2);
+// }
 
 //calculating hp modifier
 
@@ -93,4 +93,4 @@ function d12HP() {
 // }
 
 
-module.exports = { generateScore, getModifier, d6HP, d8HP, d10HP, d12HP };
+module.exports = { generateScore, d6HP, d8HP, d10HP, d12HP, getHPTotal };
