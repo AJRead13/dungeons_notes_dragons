@@ -1,11 +1,26 @@
 import React, { useState } from 'react';
-import { Alert, AlertTitle, Button, TextField, InputLabel, NativeSelect, Dialog, DialogContent, DialogTitle } from '@mui/material';
+import { Alert, AlertTitle, TextField, InputLabel, NativeSelect, Dialog, DialogContent, DialogTitle } from '@mui/material';
 import { useMutation } from '@apollo/client';
 import { ADD_CHARACTER } from '../utils/mutations';
 import Auth from '../utils/auth';
 import { useHistory } from 'react-router';
+import Button from '@mui/material/Button';
+import { createTheme } from '@mui/material/styles';
+import { purple, deepOrange } from '@mui/material/colors';
+
+
 
 const CharForm = () => {
+  const theme = createTheme({
+    palette: {
+      primary: {
+        main: deepOrange[900]
+      },
+      secondary: {
+        main: purple.A200
+      }
+    }
+  })
   const history = useHistory();
   const [showModal, setShowModal] = useState(false);
   const [charFormData, setCharFormData] = useState({ characterName: '', race: '', className: '', hitPoints: 0, strength: 0, dexterity: 0, constitution: 0, intelligence: 0, wisdom: 0, charisma: 0 });
@@ -108,7 +123,7 @@ const CharForm = () => {
       </NativeSelect>
       
     </DialogContent>
-    <Button variant="contained" onClick={handleFormSubmit} >Create</Button>
+    <Button theme={theme} variant="outlined" onClick={handleFormSubmit} >Create</Button>
     </Dialog>
   </>
   ); 
