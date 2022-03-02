@@ -11,16 +11,18 @@
 ## Installation
         - Just open in the browser via the link provided. 
 ## Usage
-        - In the browser @ https://morning-hollows-59577.herokuapp.com/
+        - In the browser @ https://young-basin-12130.herokuapp.com/
 ## Screenshot
 ![Screenshot](client/public/images/dndIconSmall.png)
-![Screenshot]()
+![Screenshot](images/dndHomePageDesk.png)
+![Screenshot](images/dndhomePageMobile.png)
+![Screenshot](images/dndProfileMobile.png)
 
 ## Credits
         - Tina Stanczyk, Maximilian Stump, Rich Kaplan
 
 ## License
-  Copyright 2021 Andrew James Read
+  Copyright 2022 Andrew James Read
 
         Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the "Software"), to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to the following conditions:
         
