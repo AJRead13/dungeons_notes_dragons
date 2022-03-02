@@ -2,12 +2,14 @@ import React, { useState } from 'react';
 import {Link} from 'react-router-dom';
 import { useQuery } from "@apollo/client";
 import { QUERY_CHARACTERS } from "../utils/queries";
-import { List, ListItemButton, Card, CardContent } from '@mui/material';
+import { List, ListItemButton, Card, CardContent, Dialog, Button, DialogTitle } from '@mui/material';
 import CharCreate from '../components/CharCreate';
 import Auth from '../utils/auth';
+import Typography from '@mui/material/Typography';
 
 
 const Home = () => {
+	const [showModal, setShowModal] = useState(false);
 	const { loading, data, error } = useQuery(QUERY_CHARACTERS, {
 		fetchPolicy: "no-cache",
 	});
@@ -17,31 +19,48 @@ const Home = () => {
 	if(error){
 		console.log(JSON.parse(JSON.stringify(error)));
 	}
+	const handleAlert = () => {
+		return (
+			<Dialog open={showModal}
+			onClose={() => setShowModal(false)}>
+				<DialogTitle>You must be logged in!</DialogTitle>
+			</Dialog>
+		);
+	}
 
 	return (
-		<div className="card bg-white card-rounded w-50">
-			<div className="card-header bg-dark text-center">
-				<h1>Welcome to The Dungeon, Notes, Dragons!</h1>
-			</div>
-			<div style={{ textAlign: "center" }} className="card-body m-5">
-				<h2>Here is a list of user-created Characters:</h2>
+		<Card variant="outlined" sx={{}}>
+			<CardContent>
+			<Typography variant="h2" sx={{textAlign: "center", color: "black", backgroundColor: "#f03612", maxWidth: {xs: "maxWidthXs", md: "maxWidthMd"}}}>
+				Welcome to Dungeon, Notes, Dragons
+			</Typography>
+			<Typography variant="h3" style={{ textAlign: "center", maxWidth: {xs: "maxWidthXs", md: "maxWidthMd"}}} >
+				Here are some User's Characters:
 				{loading ? (
-					<div>Loading...</div>
+					<Typography>
+						Retrieving lost adventurers...
+					</Typography>
 				) : (
 					<List className="square">
 						{characterList.map((character) => {
 							return (
 								<Card style={{ textAlign: "center" }} key={character._id}>
-									<CardContent style={{ textAlign: "center" }}>
+									<CardContent sx={{ textAlign: "center", justifyContent: "center" }}>
 								<ListItemButton key={character._id}>
 									{Auth.loggedIn() ? (
-									<Link to={{ pathname: `/character/${character._id}` }}>
+									<Link sx={{textAlign: "center", underline: "hover", color: "black"}}to={{ pathname: `/character/${character._id}` }}>
 										{character.characterName}
 									</Link>
 									) : (
-										<Link to={{pathname: '/' }}>
+										<div>
+										<Button onClick={() => {setShowModal(true)}} to={{pathname: '/' }}>
 										{character.characterName}
-									</Link>
+									</Button>
+									<Dialog open={showModal}
+									onClose={() => setShowModal(false)}>
+										<DialogTitle>You must be logged in to view a Character Sheet!</DialogTitle>
+									</Dialog>
+									</div>
 									)
 									}
 								</ListItemButton>
@@ -51,14 +70,15 @@ const Home = () => {
 						})}
 					</List>
 				)}
-			</div>
+			</Typography>
 			{Auth.loggedIn() ? (
       <CharCreate />
 			) : (
-			<div>
-			</div>
+			<Typography>
+			</Typography>
 			)}
-		</div>
+			</CardContent>
+		</Card>
 	);
 };
 export default Home;

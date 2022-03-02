@@ -13,6 +13,7 @@ import {
 import CharCreate from "../components/CharCreate";
 import { DELETE_CHARACTER } from "../utils/mutations";
 import { useHistory } from 'react-router';
+import Typography from '@mui/material/Typography';
 
 const Profile = () => {
   const history = useHistory();
@@ -59,21 +60,21 @@ const Profile = () => {
   return (
     <div>
       {Auth.loggedIn() ? (
-        <div className="card bg-white card-rounded w-50">
-          <div className="card-header bg-dark text-center">
-            <h1>{user.username}'s Profile</h1>
-          </div>
-          <div style={{ textAlign: "center" }} className="card-cody m-5">
-            <h2>Here is a list of your characters:</h2>
+        <Card >
+          <CardContent sx={{backgroundColor: "black", color: "white", textAlign: "center"}}>
+            <Typography variant="h2">{user.username}'s Profile</Typography>
+          </CardContent>
+          <CardContent style={{ textAlign: "center" }} className="card-cody m-5">
+            <Typography cariant="h2">Your characters:</Typography>
             {loading ? (
-              <div>Loading...</div>
+              <Typography>Loading...</Typography>
             ) : (
               <List className="square">
                 {userCharacters.map((character) => {
                   return (
                     <Card key={character._id}>
-                      <CardContent>
-                        <ListItemButton>
+                      <CardContent >
+                        <ListItemButton sx={{justifyContent: "space-between"}}>
                           {Auth.loggedIn() ? (
                             <Link
                               to={{ pathname: `/character/${character._id}` }}
@@ -85,15 +86,16 @@ const Profile = () => {
                               {character.characterName}
                             </Link>
                           )}
+                          <Button sx={{color: "red"}} key={character._id} onClick={() => {handleRemoveChar(character._id)}}>Remove</Button>
                         </ListItemButton>
-                        <Button key={character._id} onClick={() => {handleRemoveChar(character._id)}}>Remove</Button>
+                        
                       </CardContent>
                     </Card>
                   );
                 })}
               </List>
             )}
-          </div>
+          </CardContent>
           {Auth.loggedIn() ? (
             <div>
               <CharCreate />
@@ -101,7 +103,7 @@ const Profile = () => {
           ) : (
             <div></div>
           )}
-        </div>
+        </Card>
       ) : (
         <div>
           <h1>Please Log In</h1>

@@ -1,14 +1,15 @@
 import React, { useState } from 'react';
-import { Alert, AlertTitle, Button, TextField, InputLabel, NativeSelect, Dialog, DialogContent, DialogTitle } from '@mui/material';
+import { Alert, AlertTitle, TextField, InputLabel, NativeSelect, Dialog, DialogContent, DialogTitle } from '@mui/material';
 import { useMutation } from '@apollo/client';
 import { ADD_CHARACTER } from '../utils/mutations';
 import Auth from '../utils/auth';
 import { useHistory } from 'react-router';
+import Button from '@mui/material/Button';
 
 const CharForm = () => {
   const history = useHistory();
   const [showModal, setShowModal] = useState(false);
-  const [charFormData, setCharFormData] = useState({ characterName: '', race: '', className: '', hitPoints: 0, strength: 0, dexterity: 0, constitution: 0, intelligence: 0, wisdom: 0, charisma: 0 });
+  const [charFormData, setCharFormData] = useState({ characterName: '', race: '', className: '', hitPoints: 10, strength: 10, dexterity: 10, constitution: 10, intelligence: 10, wisdom: 10, charisma: 10 });
   
   const raceList = ["human", "elf", "dwarf", "gnome", "dragonborn", "half-elf", "halfling", "half-orc", "tiefling"];
   const classList = ["barbarian", "bard", "cleric", "druid", "fighter", "monk", "paladin", "ranger", "rogue", "sorcerer", "warlock", "wizard"]
@@ -38,9 +39,7 @@ const CharForm = () => {
           madeBy: Auth.getProfile().data.username,
         },
       });
-
-      console.log({data});
-      setCharFormData({ characterName: '', race: '', className: '', hitPoints: 10, strength: 0, dexterity: 0, constitution: 0, intelligence: 0, wisdom: 0, charisma: 0 });
+      setCharFormData({ characterName: '', race: '', className: '', hitPoints: 10, strength: 10, dexterity: 10, constitution: 10, intelligence: 10, wisdom: 10, charisma: 10 });
 
       history.go(0);
 
@@ -59,7 +58,7 @@ const CharForm = () => {
     )}
     <div className="card-footer text-center m-3">
 				<h2>Create a new character:</h2>
-					<Button className="btn btn-lg btn-danger" onClick={() => setShowModal(true)}>Create</Button>
+					<Button sx={{backgroundColor: "black", color: "white"}} onClick={() => setShowModal(true)}>Create</Button>
 		</div>
     <Dialog
         open={showModal}
@@ -108,7 +107,7 @@ const CharForm = () => {
       </NativeSelect>
       
     </DialogContent>
-    <Button variant="contained" onClick={handleFormSubmit} >Create</Button>
+    <Button sx={{backgroundColor: "black", color: "white"}} variant="outlined" onClick={handleFormSubmit} >Create</Button>
     </Dialog>
   </>
   ); 
