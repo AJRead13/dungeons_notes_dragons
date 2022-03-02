@@ -110,40 +110,40 @@ const CharSheet = ({character}) => {
 
   const getHpTotal = () => {
   
-    if (charData.race === barbarian) {
+    if (charData.className === barbarian) {
       charData.hitPoints = barbarianHp + getModifier(charData.constitution)
     }
-    if (charData.race === bard) {
+    if (charData.className === bard) {
       charData.hitPoints = bardHp + getModifier(charData.constitution)
     }  
-    if (charData.race === cleric) {
+    if (charData.className === cleric) {
       charData.hitPoints = clericHp + getModifier(charData.constitution)
     }  
-    if (charData.race === druid) {
+    if (charData.className === druid) {
       charData.hitPoints = druidHp + getModifier(charData.constitution)
     }     
-    if (charData.race === fighter) {
+    if (charData.className === fighter) {
       charData.hitPoints = fighterHp + getModifier(charData.constitution)
     }     
-    if (charData.race === monk) {
+    if (charData.className === monk) {
       charData.hitPoints = monkHp + getModifier(charData.constitution)
     }     
-    if (charData.race === paladin) {
+    if (charData.className === paladin) {
       charData.hitPoints = paladinHp + getModifier(charData.constitution)
     }      
-    if (charData.race === ranger) {
+    if (charData.className === ranger) {
       charData.hitPoints = rangerHp + getModifier(charData.constitution)
     }          
-    if (charData.race === rogue) {
+    if (charData.className === rogue) {
       charData.hitPoints = rogueHp + getModifier(charData.constitution)
     }     
-    if (charData.race === sorcerer) {
+    if (charData.className === sorcerer) {
       charData.hitPoints = sorcererHp + getModifier(charData.constitution)
     }     
-    if (charData.race === warlock) {
+    if (charData.className === warlock) {
       charData.hitPoints = warlockHp + getModifier(charData.constitution)
     }     
-    if (charData.race === wizard) {
+    if (charData.className === wizard) {
       charData.hitPoints = wizardHp + getModifier(charData.constitution)
     }   
     return charData.hitPoints;  
@@ -168,7 +168,7 @@ const CharSheet = ({character}) => {
           <h3 className="charClass">{charData.className}</h3>
         </Grid>
         <Grid item xs={4}>
-          <h3 className="charHP"><span>HP  </span>{getHpTotal(charData.className)}</h3>
+          <h3 className="charHP"><span>HP  </span>{getHpTotal()}</h3>
           <h3 className="charAlignment">{charData.alignment}</h3>
         </Grid>
 
