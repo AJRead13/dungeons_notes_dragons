@@ -34,9 +34,6 @@ const LoginForm = () => {
     }
 
     try {
-      // const { token, user } = await loginUser(userFormData);
-      // console.log(user);
-      // Auth.login(token);
       const { data } = await loginUser({
         variables: { ...userFormData },
       })

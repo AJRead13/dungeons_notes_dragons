@@ -2,13 +2,14 @@ import React, { useState } from 'react';
 import {Link} from 'react-router-dom';
 import { useQuery } from "@apollo/client";
 import { QUERY_CHARACTERS } from "../utils/queries";
-import { List, ListItemButton, Card, CardContent, Box } from '@mui/material';
+import { List, ListItemButton, Card, CardContent, Dialog, Button, DialogTitle } from '@mui/material';
 import CharCreate from '../components/CharCreate';
 import Auth from '../utils/auth';
 import Typography from '@mui/material/Typography';
 
 
 const Home = () => {
+	const [showModal, setShowModal] = useState(false);
 	const { loading, data, error } = useQuery(QUERY_CHARACTERS, {
 		fetchPolicy: "no-cache",
 	});
@@ -17,6 +18,14 @@ const Home = () => {
 
 	if(error){
 		console.log(JSON.parse(JSON.stringify(error)));
+	}
+	const handleAlert = () => {
+		return (
+			<Dialog open={showModal}
+			onClose={() => setShowModal(false)}>
+				<DialogTitle>You must be logged in!</DialogTitle>
+			</Dialog>
+		);
 	}
 
 	return (
@@ -43,9 +52,15 @@ const Home = () => {
 										{character.characterName}
 									</Link>
 									) : (
-										<Link to={{pathname: '/' }}>
+										<div>
+										<Button onClick={() => {setShowModal(true)}} to={{pathname: '/' }}>
 										{character.characterName}
-									</Link>
+									</Button>
+									<Dialog open={showModal}
+									onClose={() => setShowModal(false)}>
+										<DialogTitle>You must be logged in to view a Character Sheet!</DialogTitle>
+									</Dialog>
+									</div>
 									)
 									}
 								</ListItemButton>

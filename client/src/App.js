@@ -35,7 +35,7 @@ function App() {
     <ApolloProvider client={client}>
       <Router>
       <Navbar />
-        <div className="flex-column justify-center align-center min-100-vh bg-primary">
+        <div >
           <Switch>
             <Route exact path="/">
               <Home />

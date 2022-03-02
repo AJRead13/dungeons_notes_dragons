@@ -1,21 +1,19 @@
 import React, {useState} from 'react';
-import {QUERY_RACE} from '../utils/queries';
-import { Button, Container, Box, TextField, NativeSelect } from "@mui/material";
-import Auth from '../utils/auth';
+import { Button, Box, TextField, NativeSelect, Dialog, DialogContent, DialogTitle, Typography } from "@mui/material";
 
 // search for characters by name
 import {getRaceInfo, getClassInfo} from '../utils/API';
 
 const Searchbox = () => {
+	const [showModal, setShowModal] = useState(false);
   const [searchInput, setSearchInput] = useState('');
-  const [searched, setSearched] = useState([]);
-    const [searchType, setSearchType] = useState("");
+  const [searched, setSearched] = useState({});
+  const [searchType, setSearchType] = useState("race");
 
-//   const [raceInfo, getRaceInfo] = useQuery(QUERY_RACE);
-		// const [saveBook, { error }] = useMutation();
-		// set up useEffect hook to save `savedBookIds` list to localStorage on component unmount
-		// learn more here: https://reactjs.org/docs/hooks-effect.html#effects-with-cleanup
-		
+	const handleSearchType = (event) => {
+		const { name, value } = event.target;
+		setSearchType({ ...searchType, [name]: value });
+	};
 		// create method to search for races or classes and set state on form submit
 		const handleFormSubmit = async (event) => {
 			event.preventDefault();
@@ -26,55 +24,37 @@ const Searchbox = () => {
 			const form = event.currentTarget;
 			event.stopPropagation();
 			try {
-				if(searchType.value === 'race'){
+				if(searchType === 'race'){
 				const response = await getRaceInfo(searchInput);
 
-				if (!response.ok) {
-					throw new Error("something went wrong!");
-				}
+				const race = await response;
 
-				const { races } = await response.json();
-
-				const raceData = races.map((race) => ({
+				const raceData = {
 					name: race.name,
 					speed: race.speed,
-					abilityBonusName: race.abiility_bonuses.ability_score.name,
-					abilityBonus: race.abiility_bonuses.bonus,
 					age: race.age,
 					size: race.size_description,
 					startingProf: race.starting_proficiencies.name,
 					languages: race.language_desc,
 					traits: race.traits,
 					subraces: race.subraces.name,
-				}));
+				};
 
 				setSearched(raceData);
 				setSearchInput("");
+				setShowModal(true);
 			}else{
-
 				const response = await getClassInfo(searchInput);
 
-				if (!response.ok) {
-					throw new Error("something went wrong!");
-				}
+				const charClass = await response;
 
-				const { charClasses } = await response.json();
-
-				const classData = charClasses.map((charClass) => ({
+				const classData = {
 					name: charClass.name,
 					hitDie: charClass.hit_die,
-					profSkills: charClass.proficiency_choices.from.name,
-					prof: charClass.proficiencies.name,
-					savingThrows: charClass.saving_throws.name,
-					startingEquip: charClass.starting_equipment.equipment.name,
-					startingEquipChoice: charClass.starting_equipment.from,
-					classLevels: charClass.multi_classing,
-					subClass: charClass.subclasses.name,
-					spellcasting: charClass.spellcasting_ability.name,
-				}));
-
+				};
 				setSearched(classData);
 				setSearchInput("");
+				setShowModal(true);
 			}
 			} catch (err) {
 				console.error(err);
@@ -83,14 +63,10 @@ const Searchbox = () => {
   
   return (
 		<>
-		<Box sx={{display:'block'}}>
-			{/* <h4>Search for {searchType}!</h4> */}
+		<Box sx={{display:'flex-column'}}>
 			<NativeSelect defaultValue= {"Select"} 
-				// inputProps:{{
-				// name: searchType
 				sx={{width: '100%'}}
-				// }}
-				onChange={(e) => setSearchType(e.target.value)}>
+				onChange={handleSearchType}>
 					<option value={"race"}>race</option>
 					<option value={"class"}>class</option>
 			</NativeSelect>
@@ -111,22 +87,63 @@ const Searchbox = () => {
 				onClick={handleFormSubmit}
 			>Submit Search
 			</Button>
-		</Box>
-		{/* <Container>
-			{/* <h5>
-				{searched.length
-					? `Viewing ${searched.length} results:`
-					: "Search for a race/class to begin"}
-			</h5> */}
-			{/* <div>
-				{searched.map((search) => {
-					return (
-					<h2>${search.name}</h2>
-					)}
-
-				)}
-			</div> */}
-		{/* </Container> */} 
+			{searchType === "race" ? (
+			<Dialog
+        open={showModal}
+        onClose={() => setShowModal(false)}
+				sx={{ overflow: "hidden"}}
+      >
+				<DialogTitle>
+					Results:
+				</DialogTitle>
+					<DialogContent sx={{overflow: "scroll"}}>
+					<Typography>
+					Name: {searched.name}
+					</Typography>
+					<Typography>
+					Speed: {searched.speed}
+					</Typography>
+					<Typography>
+					Age Descripton: {searched.age}
+					</Typography>
+					<Typography>
+					Size Description: {searched.size}
+					</Typography>
+					<Typography>
+					Starting Proficiencies: {searched.startingProf}
+					</Typography>
+					<Typography>
+					{searched.starting_proficiencies}
+					</Typography>
+					<Typography>
+					Languages: {searched.languages}
+					</Typography>
+					<Typography>
+					Subraces: {searched.subraces}
+					</Typography>
+				</DialogContent>
+				
+			</Dialog>
+			):(
+				<Dialog
+        open={showModal}
+        onClose={() => setShowModal(false)}
+				sx={{ overflow: "hidden"}}
+      >
+				<DialogTitle>
+					Results:
+				</DialogTitle>
+				<DialogContent sx={{overflow: "scroll"}}>
+					<Typography>
+					Name: {searched.name}
+					</Typography>
+					<Typography>
+					Hit Die: d{searched.hitDie}
+					</Typography>
+				</DialogContent>
+			</Dialog>
+			)}
+		</Box> 
 		</>
 	);
 }

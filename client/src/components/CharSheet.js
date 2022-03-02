@@ -1,11 +1,9 @@
 import React, { useState } from "react";
-import { Alert, AlertTitle, Button, Grid, IconButton, TextField, Card, Box } from '@mui/material';
+import { Alert, AlertTitle, Button, Grid, IconButton, TextField, Card, Box, CardContent } from '@mui/material';
 import Typography from '@mui/material/Typography';
 import { ADD_NOTE, DELETE_NOTE, UPDATE_CHARACTER } from '../utils/mutations';
-import { useHistory } from "react-router";
 import { Add, Remove } from "@mui/icons-material";
 import { useMutation } from "@apollo/client";
-import { __Field } from "graphql";
 import Auth from '../utils/auth';
 
  const getModifier = score => Math.floor((score - 10)/2);
@@ -43,7 +41,6 @@ const CharSheet = ({character}) => {
   const [addNote, { addError }] = useMutation(ADD_NOTE);
   const [deleteNote, { deleteError }] = useMutation(DELETE_NOTE);
   const [updateCharacter, { uperror }] = useMutation(UPDATE_CHARACTER);
-  console.log(charData);
   const handleInputChange = async (event) => {
     const { name, value } = event.target;
     setCharData({ ...charData, [name]: JSON.parse(value) })
@@ -90,11 +87,9 @@ const CharSheet = ({character}) => {
    
     try {
       const { data } = await addNote({variables: {characterId: charData._id, noteToSave: noteData}});
-      console.log(data.addNote);
       setShowCreateNote(false);
       setNoteData({title:'', text:''});
       setCharData(data.addNote);
-      //history.push(0)
     } catch (err) {
       console.log(JSON.parse(JSON.stringify(err)));
     }
@@ -159,30 +154,31 @@ const CharSheet = ({character}) => {
           An error occured while trying to update your character.
         </Alert>
       )}
-      <Box sx={{ flexGrow: 1, backgroundColor: "white" }}>
+      
+      <Box sx={{ backgroundColor: "canvas", color: "black" }}>
       <Grid container spacing={{ xs: 2, md: 3 }} columns={{ xs: 4, sm: 8, md: 12 }}>
         <Grid item xs={2} sm={4} md={4} >
-          <Typography variant="h4">
+          <Typography variant="h4" sx={{margin: "10px"}}>
           Character: {charData.characterName}
           </Typography>
         </Grid>
         <Grid item xs={2} sm={4} md={4} >
-        <Typography variant="h4">
+        <Typography variant="h4" sx={{margin: "10px"}}>
           Creator: {charData.madeBy}
         </Typography>
         </Grid>
           
         <Grid item xs={4}>
-          <Typography variant="h5">
+          <Typography variant="h5" sx={{margin: "10px"}}>
             Race: {charData.race}
           </Typography>
-          <Typography variant="h5">
+          <Typography variant="h5" sx={{margin: "10px"}}>
             Class: {charData.className}
           </Typography>   
         </Grid>
         <Grid item xs={4}>
-          <h3 className="charHP"><span>HP  </span>{getHpTotal()}</h3>
-          <h3 className="charAlignment">{charData.alignment}</h3>
+          <Typography variant="h3" sx={{margin: "10px"}} className="charHP"><span>HP  </span>{getHpTotal()}</Typography>
+          <Typography variant="h3" sx={{margin: "10px"}} className="charAlignment">{charData.alignment}</Typography>
         </Grid>
 
         <Grid item xs={4} >
@@ -251,19 +247,21 @@ const CharSheet = ({character}) => {
           </table>
         </Grid>
         <Grid item xs={4}>
-          <h3>Player Level</h3>
+          <Typography variant="h4" sx={{margin: "10px"}}>Player Level</Typography>
           <br/>
           <TextField type="number" name="level" id="charLevel" min="1" max="20" value={1} onChange={handleInputChange}></TextField>
         </Grid>
 
         <Grid item xs={4}>
-          <h3>Proficiency Bonus</h3>
+          <Typography variant="h4" sx={{margin: "10px"}}>Proficiency Bonus</Typography>
           <br/>
-          <TextField type="number" id="profBonus" value={Math.ceil((1/4) + 1)}></TextField>
+          <TextField sx={{margin: "10px"}} type="number" id="profBonus" value={Math.ceil((1/4) + 1)}></TextField>
         </Grid>
-
         <Grid item xs={12}>
-          <h3>Notes <IconButton onClick={toggleCreate}><Add/></IconButton></h3>
+        <Typography variant="h3" sx={{margin: "10px"}}>Notes <IconButton onClick={toggleCreate}><Add/></IconButton></Typography>
+        </Grid>
+        <Grid item xs={12} sx={{display: {xs: "flex-column", md: "flex-row", lg: "flex"}, justifyContent: "center", flexWrap: {lg: "wrap"}}}>
+          
           {addError && (
             <Alert severity="error" onClose={() => {}}>
               <AlertTitle>Error</AlertTitle>
@@ -277,18 +275,22 @@ const CharSheet = ({character}) => {
             </Alert>
           )}
           {showCreateNote && (
-            <div id="createNote" >
+            <Card sx={{display: "flex-column", maxWidth: "500px", margin: "5px"}} id="createNote" >
+              <CardContent>
               <TextField name="title" placeholder="Title" onChange={handleNoteChange}></TextField>
-              <TextField multiline name="text" onChange={handleNoteChange}></TextField>
-              <Button onClick={submitNote}>Submit</Button>
-            </div>
+              <TextField multiline name="text" placeholder="Enter note..." onChange={handleNoteChange}></TextField>
+              </CardContent>
+              <CardContent>
+              <Button sx={{textAlign: "center"}}onClick={submitNote}>Submit</Button>
+              </CardContent>
+            </Card>
           )}
           {charData.notes.map((note) => 
-            <div key={note._id} className="note">
-              <h4>{note.title} <IconButton onClick={() => removeNote(note._id)}><Remove/></IconButton></h4>
-              <h5>{note.timestamp}</h5>
-              <p>{note.text}</p>
-            </div>
+            <Card sx={{display: "flex-column", backgroundColor: "#676c70", maxWidth: "500px", margin: "5px"}}key={note._id} className="note">
+              <CardContent><Typography variant="h6">{note.title}<IconButton onClick={() => removeNote(note._id)}><Remove/></IconButton></Typography> </CardContent>
+              <CardContent>{note.text}</CardContent>
+              <CardContent>{note.timestamp}</CardContent>
+            </Card>
           )}
         </Grid>
       </Grid>
