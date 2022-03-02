@@ -8,61 +8,31 @@ import { __Field } from "graphql";
 import Auth from '../utils/auth';
 
  const getModifier = score => Math.floor((score - 10)/2);
-// let barbarianHp = 12;
-// let bardHp = 8;
-// let clericHp = 8;
-// let druidHp = 8;
-// let fighterHp = 10;
-// let monkHp = 8;
-// let paladinHp = 10;
-// let rangerHp = 10;
-// let rogueHp = 8;
-// let sorcererHp = 6;
-// let warlockHp = 8;
-// let wizardHp = 6;
+let barbarianHp = 12;
+let bardHp = 8;
+let clericHp = 8;
+let druidHp = 8;
+let fighterHp = 10;
+let monkHp = 8;
+let paladinHp = 10;
+let rangerHp = 10;
+let rogueHp = 8;
+let sorcererHp = 6;
+let warlockHp = 8;
+let wizardHp = 6;
+const barbarian = "barbarian";
+const bard = "bard";
+const cleric = "cleric";
+const druid = "druid";
+const fighter = "fighter";
+const monk = "monk";
+const paladin = "paladin";
+const ranger = "ranger";
+const rogue = "rogue";
+const sorcerer = "sorcerer";
+const warlock = "warlock";
+const wizard = "wizard";
 
-// const getHpTotal = () => {
-//   const [charData, setCharData] = useState({...char, level: 1});
-  
-//   if (charData.race == barbarian) {
-//     charData.hitPoints = barbarianHp + getModifier(charData.constitution)
-//   }
-//   if (charData.race == bard) {
-//     charData.hitPoints = bardHp + getModifier(charData.constitution)
-//   }  
-//   if (charData.race == cleric) {
-//     charData.hitPoints = clericHp + getModifier(charData.constitution)
-//   }  
-//   if (charData.race == druid) {
-//     charData.hitPoints = druidHp + getModifier(charData.constitution)
-//   }     
-//   if (charData.race == fighter) {
-//     charData.hitPoints = fighterHp + getModifier(charData.constitution)
-//   }     
-//   if (charData.race == monk) {
-//     charData.hitPoints = monkHp + getModifier(charData.constitution)
-//   }     
-//   if (charData.race == paladin) {
-//     charData.hitPoints = paladinHp + getModifier(charData.constitution)
-//   }      
-//   if (charData.race == ranger) {
-//     charData.hitPoints = rangerHp + getModifier(charData.constitution)
-//   }          
-//   if (charData.race == rogue) {
-//     charData.hitPoints = rogueHp + getModifier(charData.constitution)
-//   }     
-//   if (charData.race == sorcerer) {
-//     charData.hitPoints = sorcererHp + getModifier(charData.constitution)
-//   }     
-//   if (charData.race == warlock) {
-//     charData.hitPoints = warlockHp + getModifier(charData.constitution)
-//   }     
-//   if (charData.race == wizard) {
-//     charData.hitPoints = wizardHp + getModifier(charData.constitution)
-//   }   
-//   return charData.hitPoints;  
-
-// };
 
 
 const CharSheet = ({character}) => {
@@ -138,6 +108,48 @@ const CharSheet = ({character}) => {
     }
   }
 
+  const getHpTotal = () => {
+  
+    if (charData.className === barbarian) {
+      charData.hitPoints = barbarianHp + getModifier(charData.constitution)
+    }
+    if (charData.className === bard) {
+      charData.hitPoints = bardHp + getModifier(charData.constitution)
+    }  
+    if (charData.className === cleric) {
+      charData.hitPoints = clericHp + getModifier(charData.constitution)
+    }  
+    if (charData.className === druid) {
+      charData.hitPoints = druidHp + getModifier(charData.constitution)
+    }     
+    if (charData.className === fighter) {
+      charData.hitPoints = fighterHp + getModifier(charData.constitution)
+    }     
+    if (charData.className === monk) {
+      charData.hitPoints = monkHp + getModifier(charData.constitution)
+    }     
+    if (charData.className === paladin) {
+      charData.hitPoints = paladinHp + getModifier(charData.constitution)
+    }      
+    if (charData.className === ranger) {
+      charData.hitPoints = rangerHp + getModifier(charData.constitution)
+    }          
+    if (charData.className === rogue) {
+      charData.hitPoints = rogueHp + getModifier(charData.constitution)
+    }     
+    if (charData.className === sorcerer) {
+      charData.hitPoints = sorcererHp + getModifier(charData.constitution)
+    }     
+    if (charData.className === warlock) {
+      charData.hitPoints = warlockHp + getModifier(charData.constitution)
+    }     
+    if (charData.className === wizard) {
+      charData.hitPoints = wizardHp + getModifier(charData.constitution)
+    }   
+    return charData.hitPoints;  
+  
+  };
+
   return (
     <>
       {uperror && (
@@ -156,7 +168,7 @@ const CharSheet = ({character}) => {
           <h3 className="charClass">{charData.className}</h3>
         </Grid>
         <Grid item xs={4}>
-          <h3 className="charHP">{charData.hitPoints}</h3>
+          <h3 className="charHP"><span>HP  </span>{getHpTotal()}</h3>
           <h3 className="charAlignment">{charData.alignment}</h3>
         </Grid>
 
